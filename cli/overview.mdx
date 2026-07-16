@@ -1,0 +1,60 @@
+---
+title: "nowrun CLI Reference Overview"
+sidebarTitle: "Overview"
+description: "The nowrun CLI lets your AI agent install, authenticate, and deploy Android APKs to live browser URLs. Learn how the CLI is structured and how to explore it."
+---
+
+The nowrun CLI is the engine behind every deploy. It's designed to be run by an AI agent, which discovers the full command surface from the built-in skill and MCP server — so your agent always knows exactly what to do and how to do it.
+
+## Installation
+
+Your agent installs the CLI with a single command:
+
+```bash
+pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ nowrun
+```
+
+Python 3.8 or higher is required.
+
+## Exploring commands
+
+To see every available command, run:
+
+```bash
+nowrun help
+```
+
+To get detailed help for a specific command, run:
+
+```bash
+nowrun <command> -h
+```
+
+Your agent uses both of these at runtime to discover the full command surface without needing a hardcoded list.
+
+## Command reference
+
+| Command | Description |
+|---|---|
+| `nowrun init -t <token>` | Authenticate and install the skill + MCP server |
+| `nowrun deploy` | Deploy an Android APK to a live URL |
+| `nowrun help` | List all available commands |
+| `nowrun <command> -h` | Show help for a specific command |
+
+## The skill and MCP server
+
+When `nowrun init` is run, it installs two key components:
+
+- **The nowrun skill** — teaches your AI agent about all available CLI commands and how to use them.
+- **The MCP server** — gives your agent a structured, machine-readable interface to the CLI so it can invoke commands reliably and handle outputs correctly.
+
+Together, these mean your agent never needs a hardcoded command list. It discovers everything at runtime, adapting automatically as the CLI evolves.
+
+<Info>
+  Because the CLI is agent-driven, the full command surface is intentionally discovered at runtime. Your agent uses `nowrun help` and the MCP server to learn what's available — this means the agent always uses the latest commands.
+</Info>
+
+## Next steps
+
+- [nowrun init](/cli/init) — Authenticate the CLI and install the skill + MCP server.
+- [nowrun deploy](/cli/deploy) — Deploy an Android APK to a live, browser-accessible URL.

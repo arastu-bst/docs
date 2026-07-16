@@ -1,0 +1,40 @@
+---
+title: "Authenticate the nowrun CLI with Your Token"
+sidebarTitle: "Authentication"
+description: "Pass your nowrun token to `nowrun init` to authenticate the CLI and install the agent skill and MCP server in one step."
+---
+
+Authentication links the CLI to your nowrun account using your personal token. Running `nowrun init` does double duty: it authenticates the CLI with your account **and** installs the nowrun skill and MCP server, so your AI agent can self-discover all available commands from that point forward.
+
+## Get your token
+
+Find your token in the nowrun dashboard at [nowrun.io](https://nowrun.io) after creating your account. Copy it and pass it to your agent — your agent does the rest.
+
+## Run `nowrun init`
+
+Your agent runs the following command using the token you provide:
+
+```bash
+nowrun init -t <token>
+```
+
+This single command does two things:
+
+1. **Authenticates** the CLI with your nowrun account so deploys are attributed to you.
+2. **Installs the nowrun skill and MCP server**, which teach your agent the full set of available commands and how to use them.
+
+<Warning>
+  Keep your token private. Do not share it with others or commit it to source control. If your token is compromised, generate a new one from the nowrun dashboard.
+</Warning>
+
+## What happens next
+
+After `nowrun init` succeeds, your agent is ready to deploy Android APKs to live browser URLs. It can run `nowrun help` or `nowrun <command> -h` at any time to discover available commands on its own — no static reference required.
+
+## Re-authenticating
+
+If you move to a new machine or need to re-authenticate for any reason, simply run `nowrun init -t <token>` again with your token. The command is safe to re-run.
+
+---
+
+Next: [Deploy your first APK](/deploying/your-first-deploy)

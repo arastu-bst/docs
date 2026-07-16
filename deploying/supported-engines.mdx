@@ -1,0 +1,38 @@
+---
+title: "Supported Game and App Engines for nowrun"
+sidebarTitle: "Supported Engines"
+description: "nowrun supports any engine that produces an Android APK — native Android, Unity, Godot, Unreal Engine, and others. Learn what you need for each."
+---
+
+nowrun works with any engine that outputs an Android `.apk` file. The deploy step is entirely engine-agnostic — your agent uploads the APK to nowrun regardless of how it was built. If your toolchain produces a valid APK, you're ready to deploy.
+
+## Supported engines
+
+<CardGroup cols={2}>
+  <Card icon="android" title="Native Android">
+    Standard Android Studio and Gradle projects are fully supported. Build your APK through your normal workflow and let the agent handle the upload.
+  </Card>
+  <Card icon="gamepad" title="Unity">
+    Build for Android in Unity using either the IL2CPP or Mono scripting backend. Export the APK from Unity's build settings and deploy it directly.
+  </Card>
+  <Card icon="ghost" title="Godot">
+    Export your Godot project as an Android APK using the built-in export menu. Once the APK is on disk, the agent takes care of the rest.
+  </Card>
+  <Card icon="gamepad" title="Unreal Engine">
+    Package your Unreal Engine project for Android to produce an APK. Deploy the resulting file without any additional configuration.
+  </Card>
+</CardGroup>
+
+## Requirements
+
+Any valid `.apk` file is supported. Keep the following in mind:
+
+- The APK must target Android — `armeabi-v7a`, `arm64-v8a`, or `x86_64` are all standard build outputs and work as expected.
+- Both debug and release APKs are supported.
+- nowrun does not impose a minimum Android API level — follow your engine's own recommendations for your target audience.
+
+<Info>
+  If your engine produces an `.aab` (Android App Bundle) instead of an `.apk`, you'll need to configure your build to output an APK. The `.aab` format is not currently supported.
+</Info>
+
+The agent instructs nowrun with the path to your APK automatically — no extra configuration is required on your end.

@@ -1,0 +1,40 @@
+---
+title: "nowrun init — Authenticate and Install the Agent Skill"
+sidebarTitle: "nowrun init"
+description: "nowrun init authenticates the CLI with your token and installs the nowrun skill and MCP server so your AI agent can discover all deploy commands."
+---
+
+`nowrun init` is the first command your agent runs after installing the CLI. It authenticates with your nowrun account using your token and sets up the skill and MCP server that give your agent a complete, structured interface to all nowrun commands.
+
+## Usage
+
+```bash
+nowrun init -t <token>
+```
+
+## Flags
+
+<ParamField query="-t" name="-t <token>" type="string" required>
+  Your nowrun authentication token. Found in your nowrun dashboard at [nowrun.io](https://nowrun.io). This token is used to verify your identity and authorize all subsequent CLI commands.
+</ParamField>
+
+## What it does
+
+Running `nowrun init` performs the following steps in order:
+
+1. Validates your token with nowrun.
+2. Saves credentials locally so future commands are authenticated automatically.
+3. Installs the nowrun skill, which teaches your AI agent all available CLI commands and their options.
+4. Installs the nowrun MCP server, which gives your agent a structured interface to the CLI for reliable command execution and output handling.
+
+## Where to find your token
+
+Log in at [nowrun.io](https://nowrun.io) and copy your token from the dashboard. Your agent will use this token when running `nowrun init`.
+
+<Warning>
+  Keep your token private. Do not commit it to source control or share it publicly.
+</Warning>
+
+## Re-authenticating
+
+You can run `nowrun init -t <token>` again at any time to re-authenticate — for example, after a fresh install, when setting up a new machine, or if your credentials need to be refreshed. Re-running the command overwrites any previously stored credentials.

@@ -1,0 +1,69 @@
+{
+  "projectType": "saas",
+  "projectName": "nowrun",
+  "projectDescription": "A service that deploys Android apps to live browser-accessible URLs, driven by an AI coding agent.",
+  "theme": "almond",
+  "primaryColor": "#ef7025",
+  "lightColor": "#eec9bc",
+  "darkColor": "#4fa1ab",
+  "navigation": {
+    "groups": [
+      {
+        "group": "Get Started",
+        "pages": [
+          "introduction",
+          "quickstart",
+          "how-it-works"
+        ]
+      },
+      {
+        "group": "Setup",
+        "pages": [
+          "setup/account",
+          "setup/cli-install",
+          "setup/authentication"
+        ]
+      },
+      {
+        "group": "Deploying",
+        "pages": [
+          "deploying/your-first-deploy",
+          "deploying/supported-engines",
+          "deploying/managing-apps"
+        ]
+      },
+      {
+        "group": "CLI Reference",
+        "pages": [
+          "cli/overview",
+          "cli/init",
+          "cli/deploy"
+        ]
+      },
+      {
+        "group": "Help",
+        "pages": [
+          "help/faq",
+          "help/troubleshooting"
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Deploy Android APKs to a live, shareable browser URL — no install required for viewers",
+    "AI agent-driven workflow: the agent installs the CLI, authenticates, and deploys",
+    "Compatible with any APK-producing engine: native Android, Unity, Godot, Unreal",
+    "Free plan activated with a one-time $0 card verification",
+    "nowrun skill and MCP server let agents self-discover all CLI commands",
+    "Dashboard for managing apps, links, versions, and plan"
+  ],
+  "publicApiSurface": [
+    "nowrun init -t <token>",
+    "nowrun deploy",
+    "nowrun help",
+    "nowrun <command> -h",
+    "pip install nowrun (Test PyPI)",
+    "nowrun skill",
+    "nowrun MCP server"
+  ]
+}

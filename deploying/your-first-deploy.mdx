@@ -1,0 +1,49 @@
+---
+title: "Deploy Your First Android App with nowrun"
+sidebarTitle: "First Deploy"
+description: "Walk through deploying an Android APK to a live browser URL using your AI agent and the nowrun CLI. Get a shareable link in minutes."
+---
+
+This page walks you through the full deploy process — from having a built APK to having a live, shareable browser URL. By the end, your app will be running in the cloud and accessible to anyone with the link.
+
+## Before you start
+
+<Note>
+  Make sure you have the following ready before deploying:
+
+  - A nowrun account with a verified card (free plan is available at no charge).
+  - The nowrun CLI installed and authenticated — `nowrun init` must already be complete.
+  - An Android `.apk` file built and ready on your machine.
+</Note>
+
+## Tell your agent to deploy
+
+You don't need to memorize any commands. Simply ask your AI agent to deploy the app — it already knows what to do from the nowrun skill installed during `nowrun init`.
+
+**Example prompt:**
+
+> "Deploy my app to nowrun."
+
+The agent will run the deploy command on your behalf:
+
+```bash
+nowrun deploy
+```
+
+The agent discovers the exact flags and options it needs by consulting `nowrun help` — you don't need to specify anything beyond the request.
+
+## Get your link
+
+When the deploy finishes, the agent shares a live URL with you. That URL opens directly in any browser and streams your Android app — no installation, no app store, nothing to download. You can share it with testers, clients, or anyone you choose.
+
+## Viewing in the dashboard
+
+Log in at [nowrun.io](https://nowrun.io) to see all your deployed apps in one place. The dashboard shows each app's live URL, version history, and current status.
+
+<Tip>
+  The first deploy may take a moment while nowrun provisions your app. Subsequent deploys are faster.
+</Tip>
+
+---
+
+Now that your app is live, see [Managing Apps](/deploying/managing-apps) to learn how to update, share, and manage your deployments from the dashboard.

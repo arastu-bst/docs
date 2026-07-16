@@ -1,0 +1,51 @@
+---
+title: "nowrun deploy — Publish Your Android APK to a Live URL"
+sidebarTitle: "nowrun deploy"
+description: "nowrun deploy uploads your Android APK and streams it at a browser-accessible URL anyone can open without installing anything."
+---
+
+`nowrun deploy` is the command that publishes your Android APK to nowrun and returns a live URL. Your AI agent runs this after building the APK — no Android device, emulator, or app store required on the recipient's end.
+
+## Usage
+
+```bash
+nowrun deploy
+```
+
+The agent discovers exact flags and options from `nowrun deploy -h` and the nowrun skill. The base command is `nowrun deploy`.
+
+## Prerequisites
+
+<Note>
+  Before running `nowrun deploy`, make sure you have:
+  - The nowrun CLI installed (`pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ nowrun`)
+  - Completed `nowrun init` successfully so your credentials are saved
+  - An Android `.apk` file built and ready to upload
+</Note>
+
+## What it does
+
+When your agent runs `nowrun deploy`, it:
+
+1. Locates the APK (the agent specifies the path).
+2. Uploads the APK to nowrun.
+3. nowrun streams the app at a unique, browser-accessible URL.
+4. Returns the live URL — share it with anyone, no installation needed.
+
+## Exploring options
+
+Because the CLI is agent-driven and evolves over time, use the built-in help to discover all current flags and options:
+
+```bash
+nowrun deploy -h
+```
+
+Your agent runs this automatically via the MCP server and skill to stay up to date with the latest available options.
+
+<Tip>
+  Each deploy creates a new version. Your previous live URL stays active until you explicitly remove it or the app is deleted.
+</Tip>
+
+## Managing deployed apps
+
+After deploying, you can manage your live apps — including viewing, updating, and removing them. See [Managing Apps](/deploying/managing-apps) for details.

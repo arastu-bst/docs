@@ -1,0 +1,50 @@
+---
+title: "Install the nowrun CLI with pip"
+sidebarTitle: "CLI Install"
+description: "Install the nowrun command-line tool via pip. Requires Python 3.8 or later. Your AI agent typically runs this install step automatically."
+---
+
+Your AI agent usually installs the nowrun CLI for you as part of its setup flow — you don't need to do anything. If you want to install it manually or verify your environment ahead of time, follow the steps below. Python 3.8 or later is required.
+
+## Requirements
+
+<Info>
+  Before installing, make sure you have the following:
+
+  - **Python 3.8+** — check your version with `python --version` or `python3 --version`
+  - **pip** — check with `pip --version`
+</Info>
+
+## Install
+
+Run the following command to install the nowrun CLI:
+
+```bash
+pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ nowrun
+```
+
+## Verify the install
+
+Confirm the CLI installed correctly by checking its version:
+
+```bash
+nowrun --version
+```
+
+Explore available commands:
+
+```bash
+nowrun help
+```
+
+## The skill and MCP server
+
+Running `nowrun init -t <token>` after install does more than authenticate — it also installs the nowrun skill and MCP server. These teach your agent the full set of available commands. At any point, your agent can run `nowrun help` or `nowrun <command> -h` to self-discover the current command surface without needing static documentation.
+
+<Tip>
+  If you're using an AI agent, you typically just tell it to deploy your app — it will install the CLI automatically. You only need to install manually if you want to use the CLI directly or are setting up a new environment.
+</Tip>
+
+---
+
+Next: [Authenticate the CLI with your token](/setup/authentication)

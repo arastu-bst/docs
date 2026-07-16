@@ -1,0 +1,46 @@
+---
+title: "Manage Your Deployed Apps in the nowrun Dashboard"
+sidebarTitle: "Managing Apps"
+description: "View, update, and share your deployed Android apps from the nowrun dashboard. Manage live links, version history, and your plan."
+---
+
+After deploying, the nowrun dashboard at [nowrun.io](https://nowrun.io) is where you manage everything — apps, live links, version history, and your plan. Everything your agent deploys shows up here automatically.
+
+## Dashboard overview
+
+<CardGroup cols={2}>
+  <Card icon="link" title="Live Links">
+    Each app gets a unique URL the moment it's deployed. Share it with anyone — it opens in any browser with no installation required.
+  </Card>
+  <Card icon="clock-rotate-left" title="Version History">
+    Every deploy creates a new version of your app. You can view previous versions and track what has changed over time.
+  </Card>
+  <Card icon="gear" title="App Settings">
+    Update your app's name and configuration directly from the dashboard whenever you need to make changes.
+  </Card>
+  <Card icon="credit-card" title="Plan & Billing">
+    Upgrade your plan or manage your billing details from one place. nowrun's free plan is available with a $0 card verification.
+  </Card>
+</CardGroup>
+
+## Sharing your app
+
+The live URL your agent provides after a deploy can be shared directly with anyone. Viewers don't need a nowrun account, a specific device, or anything installed — just a browser. Copy the link and send it to testers, clients, or collaborators.
+
+## Updating your app
+
+To deploy a new version, simply ask your agent to deploy again:
+
+```bash
+nowrun deploy
+```
+
+nowrun creates a new version while keeping the existing URL live. Your audience can continue using the current version without any interruption as the new one is pushed.
+
+## Deleting an app
+
+You can delete an app at any time from the dashboard. Deleting an app permanently removes its live URL and all associated versions. This action cannot be undone, so make sure you no longer need the app before proceeding.
+
+<Note>
+  Your live link stays active as long as your account is in good standing. Upgrading your plan may extend availability and add features.
+</Note>

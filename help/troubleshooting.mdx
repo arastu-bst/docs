@@ -1,0 +1,89 @@
+---
+title: "Troubleshoot Common nowrun Issues"
+sidebarTitle: "Troubleshooting"
+description: "Diagnose and fix common problems with nowrun: authentication errors, CLI install failures, deploy issues, and agents that can't find the CLI."
+---
+
+This page covers the most common issues when setting up and using nowrun, and how to resolve them.
+
+<AccordionGroup>
+
+<Accordion title="`nowrun: command not found` after install">
+  **Cause:** pip installed the package successfully, but Python's scripts directory isn't on your system `PATH`.
+
+  **Fix:** Run nowrun directly through the Python module to confirm the install succeeded:
+
+  ```bash
+  python -m nowrun --version
+  ```
+
+  If that works, add Python's scripts directory to your `PATH` permanently, or reinstall and verify the install location with:
+
+  ```bash
+  pip show nowrun
+  ```
+</Accordion>
+
+<Accordion title="`nowrun init` fails with an authentication error">
+  **Cause:** The token you provided is invalid or has expired.
+
+  **Fix:** Log in to the nowrun dashboard at [nowrun.io](https://nowrun.io), copy a fresh token, and re-run init with the new value:
+
+  ```bash
+  nowrun init -t <new-token>
+  ```
+</Accordion>
+
+<Accordion title='Deploy fails — "APK not found" or similar'>
+  **Cause:** The agent can't find the `.apk` file at the expected path, either because the build step didn't complete or the output path differs from what the agent assumed.
+
+  **Fix:** Confirm your build step finished successfully and that the `.apk` was actually generated. Then tell your agent the explicit path to the APK file so it can pass it to `nowrun deploy` directly.
+</Accordion>
+
+<Accordion title="Agent says it doesn't know how to deploy / can't find the skill">
+  **Cause:** The nowrun skill and MCP server are installed during `nowrun init`. If init was skipped or failed, the agent won't have access to the nowrun command surface.
+
+  **Fix:** Run `nowrun init -t <token>` again to re-install the skill and MCP server, then ask your agent to retry the deployment.
+
+  ```bash
+  nowrun init -t <token>
+  ```
+</Accordion>
+
+<Accordion title="`.aab` file — can't deploy">
+  **Cause:** nowrun only supports `.apk` files. Android App Bundles (`.aab`) are not supported.
+
+  **Fix:** Configure your build to output an APK instead of an AAB:
+
+  - **Android Studio:** Go to **Build → Build Bundle(s) / APK(s) → Build APK(s)**.
+  - **Unity:** Open **Android Player Settings** and disable the **Build App Bundle (Google Play)** option before building.
+  - **Other engines:** Check your engine's Android export settings for an option to output `.apk` instead of `.aab`.
+</Accordion>
+
+<Accordion title="Python version error during install">
+  **Cause:** Your active Python version is older than 3.8, which nowrun requires.
+
+  **Fix:** Check your current version:
+
+  ```bash
+  python --version
+  ```
+
+  If it's below 3.8, upgrade Python using your system package manager or by downloading the latest release from [python.org](https://python.org). Then re-run the CLI install:
+
+  ```bash
+  pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ nowrun
+  ```
+</Accordion>
+
+<Accordion title="Live URL isn't loading">
+  **Cause:** The deploy may still be processing, or an upload error occurred silently.
+
+  **Fix:** Review the deploy output from your agent for any error messages. If the deploy reported success, wait a moment and refresh the URL. You can also check the [nowrun dashboard](https://nowrun.io) to see the current status of your deployed app.
+</Accordion>
+
+</AccordionGroup>
+
+<Note>
+  If you're still stuck, check the nowrun dashboard for status messages, or revisit the CLI output from your agent — it often includes the specific error.
+</Note>

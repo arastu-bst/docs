@@ -1,47 +1,45 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "Get Started with nowrun in Minutes"
+sidebarTitle: "Quickstart"
+description: "Create your nowrun account, verify your card, and let your AI agent deploy your first Android app to a live URL in under five minutes."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
-
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
-
-## Prerequisites
-
-Before you begin, you must have:
-
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+By the end of this page you will have a nowrun account, an active free plan, and a live browser URL for your Android app — all without running a single command yourself. Your AI agent handles the CLI install, authentication, and deploy the moment you hand it your token.
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
-
-    ```bash
-    npm install your-package
-    ```
+  <Step title="Create your account">
+    Go to [nowrun.io](https://nowrun.io) and sign up for a free account. You only need an email address to get started.
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
-
-    ```bash
-    your-cli init
-    ```
+  <Step title="Verify your card">
+    Add a payment method in the nowrun dashboard. nowrun runs a **$0 authorization check** — you are not charged. The verification activates your free plan and prevents abuse, which is what keeps the free tier free for everyone.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
+  <Step title="Copy your token">
+    After verification, open the nowrun dashboard and copy your personal API token. You will paste this into your agent in the next step.
+  </Step>
+  <Step title="Tell your agent to deploy">
+    Open your AI coding agent (Claude Code, Codex, Cursor, or any shell-capable agent) and ask it to deploy your app using your nowrun token. When the agent asks for the token, paste it in.
+
+    The agent will run the following commands on your behalf:
 
     ```bash
-    your-cli start
+    pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ nowrun
+    nowrun init -t <token>
     ```
+
+    <Note>
+      You do not need to run these commands yourself. The agent executes them as part of its setup and deploy cycle.
+    </Note>
+  </Step>
+  <Step title="Open your link">
+    Once the deploy completes, your agent will share a live URL. Open it in any browser — your app is running instantly, with no install required.
   </Step>
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+<Note>
+  You do not need to give your agent a command cheat sheet. `nowrun init` installs the nowrun skill and MCP server, which teach the agent every available CLI command. The agent uses `nowrun help` and `nowrun <command> -h` to discover what it needs on its own.
+</Note>
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
-</Tip>
+## Next steps
+
+- [Deploy your first app](/deploying/your-first-deploy) — a deeper walkthrough of the deploy flow.
+- [CLI overview](/cli/overview) — explore every nowrun command available to your agent.
