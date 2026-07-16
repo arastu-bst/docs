@@ -1,5 +1,5 @@
 ---
-title: "Frequently Asked Questions About nowrun"
+title: "nowrun FAQ: Account Setup, CLI, Deploy, and Pricing"
 sidebarTitle: "FAQ"
 description: "Answers to the most common questions about nowrun: account setup, card verification, supported apps, pricing, and how the agent workflow works."
 ---
@@ -12,8 +12,12 @@ Quick answers to the most common questions about nowrun — from account setup a
   The $0 card verification is not a charge — it's a lightweight check to prevent spam and abuse. Your card is not billed, and you remain on the free plan until you choose to upgrade.
 </Accordion>
 
-<Accordion title="Do viewers need to install anything?">
-  No. The live URL nowrun generates opens in any standard browser. Only the person deploying the app needs a nowrun account and the CLI. Your users just click the link.
+<Accordion title="How do I find my token?">
+  Log in to the dashboard at [nowrun.io](https://nowrun.io), locate your token in the dashboard, and copy it. Paste it directly into your AI agent when prompted, or pass it with `nowrun init -t <token>`.
+</Accordion>
+
+<Accordion title="What Python version is required?">
+  Python 3.8 or later is required to install and run the nowrun CLI.
 </Accordion>
 
 <Accordion title="Does my AI agent need special permissions?">
@@ -28,16 +32,12 @@ Quick answers to the most common questions about nowrun — from account setup a
   Yes. Ask your agent to run `nowrun deploy` again after a new build. nowrun creates a new version of your app; your existing URL remains live throughout the process.
 </Accordion>
 
-<Accordion title="How do I find my token?">
-  Log in to the dashboard at [nowrun.io](https://nowrun.io), locate your token in the dashboard, and copy it. Paste it directly into your AI agent when prompted, or pass it with `nowrun init -t <token>`.
+<Accordion title="Do viewers need to install anything?">
+  No. The live URL nowrun generates opens in any standard browser. Only the person deploying the app needs a nowrun account and the CLI. Your users just click the link.
 </Accordion>
 
 <Accordion title="Can I deploy without an AI agent?">
   Yes — the CLI works independently. Run `nowrun init -t <token>` to authenticate, then `nowrun deploy` to push your APK. That said, nowrun is designed and optimized for agent-driven workflows, so using an AI agent gives you the smoothest experience.
-</Accordion>
-
-<Accordion title="What Python version is required?">
-  Python 3.8 or later is required to install and run the nowrun CLI.
 </Accordion>
 
 <Accordion title="How do I upgrade my plan?">

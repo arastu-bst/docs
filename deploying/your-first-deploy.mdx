@@ -1,19 +1,38 @@
 ---
-title: "Deploy Your First Android App with nowrun"
+title: "Deploy Your First Android APK to a Live Browser URL"
 sidebarTitle: "First Deploy"
 description: "Walk through deploying an Android APK to a live browser URL using your AI agent and the nowrun CLI. Get a shareable link in minutes."
 ---
 
-This page walks you through the full deploy process — from having a built APK to having a live, shareable browser URL. By the end, your app will be running in the cloud and accessible to anyone with the link.
+This page walks you through the full deploy process — from installing the CLI to having a live, shareable browser URL. By the end, your app will be running in the cloud and accessible to anyone with the link.
 
 ## Before you start
 
-<Note>
-  Make sure you have the following ready before deploying:
+You need a nowrun account with a verified card (a free plan is available at no charge) and Python 3.8 or later on your machine.
 
-  - A nowrun account with a verified card (free plan is available at no charge).
-  - The nowrun CLI installed and authenticated — `nowrun init` must already be complete.
-  - An Android `.apk` file built and ready on your machine.
+### Install the CLI
+
+Install nowrun from the Test PyPI registry:
+
+```bash
+pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ nowrun
+```
+
+### Authenticate and set up the skill
+
+Run `nowrun init` with your token from [nowrun.io](https://nowrun.io). This authenticates the CLI and installs the nowrun skill and MCP server that your AI agent uses:
+
+```bash
+nowrun init -t <your-token>
+```
+
+Replace `<your-token>` with the token shown in your nowrun dashboard.
+
+<Note>
+  Make sure the following are ready before deploying:
+
+  - The nowrun CLI is installed and `nowrun init -t <token>` has completed successfully.
+  - An Android `.apk` file is built and ready on your machine.
 </Note>
 
 ## Tell your agent to deploy
@@ -30,7 +49,7 @@ The agent will run the deploy command on your behalf:
 nowrun deploy
 ```
 
-The agent discovers the exact flags and options it needs by consulting `nowrun help` — you don't need to specify anything beyond the request.
+The agent discovers the exact flags and options it needs by consulting `nowrun help`. You can run that command yourself at any time to see all available commands, or use `nowrun <command> -h` for help on a specific command.
 
 ## Get your link
 

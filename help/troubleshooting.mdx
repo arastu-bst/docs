@@ -1,5 +1,5 @@
 ---
-title: "Troubleshoot Common nowrun Issues"
+title: "Troubleshooting nowrun: CLI, Auth, and Deploy Errors"
 sidebarTitle: "Troubleshooting"
 description: "Diagnose and fix common problems with nowrun: authentication errors, CLI install failures, deploy issues, and agents that can't find the CLI."
 ---
@@ -24,6 +24,22 @@ This page covers the most common issues when setting up and using nowrun, and ho
   ```
 </Accordion>
 
+<Accordion title="Python version error during install">
+  **Cause:** Your active Python version is older than 3.8, which nowrun requires.
+
+  **Fix:** Check your current version:
+
+  ```bash
+  python --version
+  ```
+
+  If it's below 3.8, upgrade Python using your system package manager or by downloading the latest release from [python.org](https://python.org). Then re-run the CLI install:
+
+  ```bash
+  pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ nowrun
+  ```
+</Accordion>
+
 <Accordion title="`nowrun init` fails with an authentication error">
   **Cause:** The token you provided is invalid or has expired.
 
@@ -32,6 +48,16 @@ This page covers the most common issues when setting up and using nowrun, and ho
   ```bash
   nowrun init -t <new-token>
   ```
+</Accordion>
+
+<Accordion title="`.aab` file — can't deploy">
+  **Cause:** nowrun only supports `.apk` files. Android App Bundles (`.aab`) are not supported.
+
+  **Fix:** Configure your build to output an APK instead of an AAB:
+
+  - **Android Studio:** Go to **Build → Build Bundle(s) / APK(s) → Build APK(s)**.
+  - **Unity:** Open **Android Player Settings** and disable the **Build App Bundle (Google Play)** option before building.
+  - **Other engines:** Check your engine's Android export settings for an option to output `.apk` instead of `.aab`.
 </Accordion>
 
 <Accordion title='Deploy fails — "APK not found" or similar'>
@@ -47,32 +73,6 @@ This page covers the most common issues when setting up and using nowrun, and ho
 
   ```bash
   nowrun init -t <token>
-  ```
-</Accordion>
-
-<Accordion title="`.aab` file — can't deploy">
-  **Cause:** nowrun only supports `.apk` files. Android App Bundles (`.aab`) are not supported.
-
-  **Fix:** Configure your build to output an APK instead of an AAB:
-
-  - **Android Studio:** Go to **Build → Build Bundle(s) / APK(s) → Build APK(s)**.
-  - **Unity:** Open **Android Player Settings** and disable the **Build App Bundle (Google Play)** option before building.
-  - **Other engines:** Check your engine's Android export settings for an option to output `.apk` instead of `.aab`.
-</Accordion>
-
-<Accordion title="Python version error during install">
-  **Cause:** Your active Python version is older than 3.8, which nowrun requires.
-
-  **Fix:** Check your current version:
-
-  ```bash
-  python --version
-  ```
-
-  If it's below 3.8, upgrade Python using your system package manager or by downloading the latest release from [python.org](https://python.org). Then re-run the CLI install:
-
-  ```bash
-  pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ nowrun
   ```
 </Accordion>
 

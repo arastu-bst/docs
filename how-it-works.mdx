@@ -1,7 +1,7 @@
 ---
-title: "How nowrun Works: Agent, CLI, and Live Streaming"
+title: "How nowrun Works: APK Deploy Pipeline and Agent Skill"
 sidebarTitle: "How It Works"
-description: "Learn how nowrun streams Android APKs to browser URLs, how the AI agent skill works, and what happens from deploy to live link."
+description: "Learn how nowrun streams Android APKs to browser URLs, how the AI agent skill and MCP server work, and what happens from deploy to live link."
 ---
 
 When your agent runs `nowrun deploy`, your APK travels through a pipeline that ends at a unique, shareable URL. Anyone who opens that URL sees your app running live in their browser — no download, no install, no app store. Here is what happens at each stage, and how the agent skill and MCP server fit into the picture.
@@ -26,6 +26,10 @@ Because of the skill and MCP server, the agent can discover commands on its own 
 ## AI agent compatibility
 
 nowrun works with any AI coding agent that can execute shell commands, including Claude Code, Codex, and Cursor. On the engine side, any toolchain that produces a standard APK is supported: native Android, Unity, Godot, and Unreal Engine. If it builds to `.apk`, nowrun can deploy it.
+
+<Warning>
+  nowrun deploys `.apk` files only. Android App Bundle (`.aab`) format is not supported. Make sure your build configuration outputs a standard APK before running `nowrun deploy`.
+</Warning>
 
 <Tip>
   You never need to install or run anything yourself. The agent handles the full install-authenticate-deploy cycle — your only job is the one-time account setup and token handoff.
