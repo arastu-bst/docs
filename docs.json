@@ -51,7 +51,8 @@
         "group": "Help",
         "pages": [
           "help/faq",
-          "help/troubleshooting"
+          "help/troubleshooting",
+          "help/for-ai-agents"
         ]
       }
     ]

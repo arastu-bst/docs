@@ -1,0 +1,84 @@
+---
+title: "For AI Agents: MCP Server, llms.txt, and Skills for nowrun Docs"
+sidebarTitle: "For AI Agents"
+description: "Endpoints and files that expose the nowrun documentation to AI coding agents — llms.txt, /mcp, skill.md, and MCP discovery — so agents can search, read, and act on the docs without extra configuration."
+---
+
+nowrun is designed to be driven by AI coding agents. This page lists every agent-facing endpoint the docs site exposes so a cold agent can discover, search, and act on the docs without any manual setup.
+
+## Content indexes
+
+<Card title="/llms.txt" icon="file-text" href="https://docs.nowrun.io/llms.txt">
+  A concise index of every page in the docs, formatted for LLMs. Follows the [llmstxt.org](https://llmstxt.org) convention.
+</Card>
+
+<Card title="/llms-full.txt" icon="file-lines" href="https://docs.nowrun.io/llms-full.txt">
+  The full contents of the docs as a single markdown file. Drop it into an agent's context window when you want everything at once.
+</Card>
+
+<Card title="Any page as markdown" icon="code" href="https://docs.nowrun.io/quickstart.md">
+  Append `.md` to any docs URL to get the raw markdown for that page (for example, `/quickstart.md`).
+</Card>
+
+## MCP server
+
+The docs expose a hosted Search MCP server so agents can search and retrieve pages in-flight instead of relying on stale training data.
+
+| Endpoint | Purpose |
+| --- | --- |
+| `https://docs.nowrun.io/mcp` | Search MCP server. Add this URL to any MCP-compatible client. |
+| `https://docs.nowrun.io/.well-known/mcp` | MCP discovery document. Agents check this to locate the server automatically. |
+| `https://docs.nowrun.io/.well-known/mcp.json` | Same discovery document, JSON extension. |
+| `https://docs.nowrun.io/.well-known/mcp/server-card.json` | MCP server card with tool metadata (name, description, input schema). |
+| `https://docs.nowrun.io/.well-known/mcp/server-cards.json` | List of server cards for this deployment. |
+
+Connect from your client of choice:
+
+<CodeGroup>
+
+```bash Claude Code
+claude mcp add --transport http nowrun https://docs.nowrun.io/mcp
+```
+
+```json Cursor (mcp.json)
+{
+  "mcpServers": {
+    "nowrun": {
+      "url": "https://docs.nowrun.io/mcp"
+    }
+  }
+}
+```
+
+```toml Codex (~/.codex/config.toml)
+[mcp_servers.nowrun]
+url = "https://docs.nowrun.io/mcp"
+```
+
+```json VS Code (.vscode/mcp.json)
+{
+  "servers": {
+    "nowrun": {
+      "type": "http",
+      "url": "https://docs.nowrun.io/mcp"
+    }
+  }
+}
+```
+
+</CodeGroup>
+
+## Skills
+
+The nowrun CLI installs a **skill and MCP server** locally when you run `nowrun init`. That skill teaches your agent _how_ to use nowrun end-to-end — not just how to search the docs. See [Authentication](/setup/authentication) and [nowrun init](/cli/init).
+
+## Crawler endpoints
+
+| Endpoint | Purpose |
+| --- | --- |
+| `https://docs.nowrun.io/sitemap.xml` | Full page index for crawlers. |
+| `https://docs.nowrun.io/robots.txt` | Crawler rules. |
+
+## What's safe to share
+
+All of the endpoints above expose only content that is already publicly published on this site. There are no tokens, secrets, or private data behind them — the same information is reachable by opening the docs in a browser.
