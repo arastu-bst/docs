@@ -1,0 +1,103 @@
+---
+title: "Try the nowrun Demo: Play 2048 Deployed with nowrun"
+sidebarTitle: "Try the Demo"
+description: "Download a demo Android APK deployed with nowrun and try it on your device to see what a nowrun-deployed app looks like end to end."
+---
+
+A dead-simple showcase of deploying to nowrun. The demo folder ships with a real Android app — the open-source **2048** game (MIT licensed) — so you just create the app and deploy the bundled APK. nowrun streams it at a URL anyone can open in a browser, no install.
+
+<Card title="Get the demo folder" icon="github" href="https://github.com/nowrun-io/nowrun-docs/tree/demo/android-quickstart/demo">
+  Contains `2048.apk` (official v1.3.3 build, MIT), this guide, and license attribution.
+</Card>
+
+## Prerequisites
+
+The nowrun CLI, installed and connected:
+
+```bash
+pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ nowrun
+nowrun init -t <token>   # auth + skill + MCP; get the token from nowrun.io
+nowrun whoami            # confirm you're authenticated
+```
+
+No Android SDK, no build step, no download — the APK is already in the folder.
+
+## Deploy it — 3 steps
+
+```bash
+cd demo
+
+# 1) create the app on nowrun and bind this folder to it
+nowrun app create --title "2048" --type android \
+  -p com.tpcstld.twozerogame --publisher "nowrun demo" --category Games --bind
+
+# 2) deploy the bundled APK
+nowrun deploy -f 2048.apk -av 1.3.3 -vc 1
+
+# 3) poll until it's live, then open the URL it prints
+nowrun status -s <submission_id>
+```
+
+<Note>
+  - `--bind` writes the new app's `game_id` to `nowrun.json`, so later commands don't need `-a`.
+  - `-av` / `-vc` are just labels on the deploy.
+  - Step 2 returns a **submission id**; pass it to step 3.
+  - Deploys are async: `status` shows `progress` while the cloud build runs, then `success` with a play URL. Open it in any browser — the app is running in the cloud and streaming to you. Share the link with anyone.
+</Note>
+
+## For an AI agent
+
+Run top to bottom. Add `--json` to any command for machine-readable output.
+
+```bash
+# once: install + connect (ask the human for the token first)
+pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ nowrun
+nowrun init -t <token>
+nowrun whoami
+
+# deploy the bundled app
+cd demo
+nowrun app create --title "2048" --type android \
+  -p com.tpcstld.twozerogame --publisher "nowrun demo" --category Games --bind --json
+nowrun deploy -f 2048.apk -av 1.3.3 -vc 1 --json
+nowrun status -s <submission_id> --json
+```
+
+How to drive it:
+
+- With `--json`, each command prints `{"ok": true, "data": {…}}`. Read the `submission_id` from `deploy`'s `data`, and the play URL from `status`'s `data` once `job_status` is `success`.
+- Poll `status` every ~15–30s; `job_status: progress` means the build is still running — keep polling, don't re-deploy.
+- Unsure about a flag? Ask the CLI: `nowrun help --json` and `nowrun <command> -h`.
+
+## Deploy a different app
+
+Any APK works. Grab one from an open-source project's releases, then create \+ deploy with that app's details:
+
+```bash
+curl -fsSL https://api.github.com/repos/tpcstld/2048/releases/latest \
+  | grep -Eo '"browser_download_url": *"[^"]+\.apk"' | head -1 | sed -E 's/.*"(https[^"]+)"/\1/' \
+  | xargs curl -fL -o app.apk
+
+nowrun app create --title "My App" --type android \
+  -p com.example.app --publisher "nowrun demo" --category Games --bind
+nowrun deploy -f app.apk -av 1.0.0 -vc 1
+```
+
+Permissively-licensed open-source apps with APKs on their GitHub releases:
+
+| App | Repo | Package | License |
+| --- | --- | --- | --- |
+| 2048 | `tpcstld/2048` | `com.tpcstld.twozerogame` | MIT |
+| Unciv | `yairm210/Unciv` | `com.unciv.app` | MPL-2.0 |
+
+Most F-Droid games are GPL; if you're okay with copyleft there's a much wider selection — download the APK from the releases page or [F-Droid](https://f-droid.org) and deploy it with step 2 above.
+
+## Troubleshooting
+
+- **`Not logged in`** — run `nowrun init -t <token>` (get the token from nowrun.io).
+- **Deploy rejected / something missing** — run `nowrun validate` and fix what it flags.
+- **`status` stays on `progress`** — that's the cloud build running; keep polling.
+
+## License
+
+The bundled `2048.apk` is the unmodified official build of the open-source [2048](https://github.com/tpcstld/2048) Android game by Jerry Jiang (tpcstld) and contributors, redistributed under the **MIT License**. No affiliation with or endorsement by the project is implied.
