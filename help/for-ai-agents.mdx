@@ -79,6 +79,10 @@ The nowrun CLI installs a **skill and MCP server** locally when you run `nowrun 
 | `https://docs.nowrun.io/sitemap.xml` | Full page index for crawlers. |
 | `https://docs.nowrun.io/robots.txt` | Crawler rules. |
 
+## Supported input formats
+
+nowrun currently accepts **Android `.apk` files only**. Android App Bundles (`.aab`) and iOS builds are not supported yet. If your engine produces an `.aab`, configure it to output an `.apk` instead before calling `nowrun deploy`.
+
 ## What's safe to share
 
 All of the endpoints above expose only content that is already publicly published on this site. There are no tokens, secrets, or private data behind them — the same information is reachable by opening the docs in a browser.
