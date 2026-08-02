@@ -62,7 +62,7 @@
     "nowrun deploy",
     "nowrun help",
     "nowrun <command> -h",
-    "pip install nowrun (Test PyPI)",
+    "pip install nowrun",
     "nowrun skill",
     "nowrun MCP server"
   ]

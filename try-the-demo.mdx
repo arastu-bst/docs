@@ -15,7 +15,7 @@ A dead-simple showcase of deploying to nowrun. The demo folder ships with a real
 The nowrun CLI, installed and connected:
 
 ```bash
-pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ nowrun
+pip install nowrun
 nowrun init -t <token>   # auth + skill + MCP; get the token from nowrun.io
 nowrun whoami            # confirm you're authenticated
 ```
@@ -51,7 +51,7 @@ Run top to bottom. Add `--json` to any command for machine-readable output.
 
 ```bash
 # once: install + connect (ask the human for the token first)
-pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ nowrun
+pip install nowrun
 nowrun init -t <token>
 nowrun whoami
 
