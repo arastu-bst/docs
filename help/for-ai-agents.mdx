@@ -8,15 +8,15 @@ nowrun is designed to be driven by AI coding agents. This page lists every agent
 
 ## Content indexes
 
-<Card title="/llms.txt" icon="file-text" href="https://docs.nowrun.io/llms.txt">
+<Card title="/llms.txt" icon="file-text" href="https://nowrun.io/docs/llms.txt">
   A concise index of every page in the docs, formatted for LLMs. Follows the [llmstxt.org](https://llmstxt.org) convention.
 </Card>
 
-<Card title="/llms-full.txt" icon="file-lines" href="https://docs.nowrun.io/llms-full.txt">
+<Card title="/llms-full.txt" icon="file-lines" href="https://nowrun.io/docs/llms-full.txt">
   The full contents of the docs as a single markdown file. Drop it into an agent's context window when you want everything at once.
 </Card>
 
-<Card title="Any page as markdown" icon="code" href="https://docs.nowrun.io/quickstart.md">
+<Card title="Any page as markdown" icon="code" href="https://nowrun.io/docs/quickstart.md">
   Append `.md` to any docs URL to get the raw markdown for that page (for example, `/quickstart.md`).
 </Card>
 
@@ -26,25 +26,25 @@ The docs expose a hosted Search MCP server so agents can search and retrieve pag
 
 | Endpoint | Purpose |
 | --- | --- |
-| `https://docs.nowrun.io/mcp` | Search MCP server. Add this URL to any MCP-compatible client. |
-| `https://docs.nowrun.io/.well-known/mcp` | MCP discovery document. Agents check this to locate the server automatically. |
-| `https://docs.nowrun.io/.well-known/mcp.json` | Same discovery document, JSON extension. |
-| `https://docs.nowrun.io/.well-known/mcp/server-card.json` | MCP server card with tool metadata (name, description, input schema). |
-| `https://docs.nowrun.io/.well-known/mcp/server-cards.json` | List of server cards for this deployment. |
+| `https://nowrun.io/docs/mcp` | Search MCP server. Add this URL to any MCP-compatible client. |
+| `https://nowrun.io/docs/.well-known/mcp` | MCP discovery document. Agents check this to locate the server automatically. |
+| `https://nowrun.io/docs/.well-known/mcp.json` | Same discovery document, JSON extension. |
+| `https://nowrun.io/docs/.well-known/mcp/server-card.json` | MCP server card with tool metadata (name, description, input schema). |
+| `https://nowrun.io/docs/.well-known/mcp/server-cards.json` | List of server cards for this deployment. |
 
 Connect from your client of choice:
 
 <CodeGroup>
 
 ```bash Claude Code
-claude mcp add --transport http nowrun https://docs.nowrun.io/mcp
+claude mcp add --transport http nowrun https://nowrun.io/docs/mcp
 ```
 
 ```json Cursor (mcp.json)
 {
   "mcpServers": {
     "nowrun": {
-      "url": "https://docs.nowrun.io/mcp"
+      "url": "https://nowrun.io/docs/mcp"
     }
   }
 }
@@ -52,7 +52,7 @@ claude mcp add --transport http nowrun https://docs.nowrun.io/mcp
 
 ```toml Codex (~/.codex/config.toml)
 [mcp_servers.nowrun]
-url = "https://docs.nowrun.io/mcp"
+url = "https://nowrun.io/docs/mcp"
 ```
 
 ```json VS Code (.vscode/mcp.json)
@@ -60,7 +60,7 @@ url = "https://docs.nowrun.io/mcp"
   "servers": {
     "nowrun": {
       "type": "http",
-      "url": "https://docs.nowrun.io/mcp"
+      "url": "https://nowrun.io/docs/mcp"
     }
   }
 }
@@ -76,8 +76,8 @@ The nowrun CLI installs a **skill and MCP server** locally when you run `nowrun 
 
 | Endpoint | Purpose |
 | --- | --- |
-| `https://docs.nowrun.io/sitemap.xml` | Full page index for crawlers. |
-| `https://docs.nowrun.io/robots.txt` | Crawler rules. |
+| `https://nowrun.io/docs/sitemap.xml` | Full page index for crawlers. |
+| `https://nowrun.io/docs/robots.txt` | Crawler rules. |
 
 ## Supported input formats
 
