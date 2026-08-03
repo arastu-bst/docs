@@ -1,7 +1,7 @@
 ---
 title: "nowrun CLI Reference: Commands, Skill, and MCP Server"
 sidebarTitle: "Overview"
-description: "The nowrun CLI lets your AI agent install, authenticate, and deploy Android APKs to live browser URLs. Learn how it is structured and how to explore it."
+description: "The nowrun CLI lets your AI agent install, authenticate, and deploy Android and HTML5 apps to live browser URLs. Learn how it is structured and how to explore it."
 ---
 
 The nowrun CLI is the engine behind every deploy. It's designed to be run by an AI agent, which discovers the full command surface from the built-in skill and MCP server — so your agent always knows exactly what to do and how to do it.
@@ -37,7 +37,8 @@ Your agent uses both of these at runtime to discover the full command surface wi
 | Command | Description |
 |---|---|
 | `nowrun init -t <token>` | Authenticate and install the skill + MCP server |
-| `nowrun deploy` | Deploy an Android APK to a live URL |
+| `nowrun app create` | Create an app (`--type android` or `--type h5`) |
+| `nowrun deploy` | Deploy an Android APK or HTML5 bundle to a live URL |
 | `nowrun help` | List all available commands |
 | `nowrun <command> -h` | Show help for a specific command |
 
@@ -56,5 +57,5 @@ Together, these mean your agent never needs a hardcoded command list. It discove
 
 ## Next steps
 
-- [nowrun init](/cli/init) — Authenticate the CLI and install the skill + MCP server.
-- [nowrun deploy](/cli/deploy) — Deploy an Android APK to a live, browser-accessible URL.
+- [nowrun init](/cli/init): authenticate the CLI and install the skill + MCP server.
+- [nowrun deploy](/cli/deploy): deploy an Android APK or HTML5 bundle to a live, browser-accessible URL.

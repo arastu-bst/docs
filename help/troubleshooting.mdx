@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting nowrun: CLI, Auth, and Deploy Errors"
 sidebarTitle: "Troubleshooting"
-description: "Diagnose and fix common problems with nowrun: authentication errors, CLI install failures, deploy issues, and agents that can't find the CLI."
+description: "Diagnose and fix common problems with nowrun: authentication errors, CLI install failures, Android and HTML5 deploy issues, and agents that can't find the CLI."
 ---
 
 This page covers the most common issues when setting up and using nowrun, and how to resolve them.
@@ -51,7 +51,7 @@ This page covers the most common issues when setting up and using nowrun, and ho
 </Accordion>
 
 <Accordion title="`.aab` file — can't deploy">
-  **Cause:** nowrun only supports `.apk` files. Android App Bundles (`.aab`) are not supported.
+  **Cause:** for Android, nowrun only supports `.apk` files. Android App Bundles (`.aab`) are not supported. (HTML5 games deploy as a `.zip` web bundle instead.)
 
   **Fix:** Configure your build to output an APK instead of an AAB:
 

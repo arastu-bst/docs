@@ -1,12 +1,12 @@
 ---
-title: "All Supported Android Game and App Engines for nowrun"
+title: "All Supported Android and HTML5 Engines for nowrun"
 sidebarTitle: "Supported Engines"
-description: "nowrun supports any engine that produces an Android APK — native Android, Unity, Godot, Unreal Engine, and others. Learn what you need for each."
+description: "nowrun supports any engine that produces an Android APK: native Android, Unity, Godot, Unreal Engine, and others, plus HTML5 web apps and games shipped as a zip bundle. Learn what you need for each."
 ---
 
-nowrun works with any engine that outputs an Android `.apk` file. The deploy step is entirely engine-agnostic — your agent uploads the APK to nowrun regardless of how it was built. If your toolchain produces a valid APK, you're ready to deploy.
+nowrun deploys two kinds of builds: **Android** APKs from any engine (native Android, Unity, Godot, Unreal Engine, and others), and **HTML5** web apps and games shipped as a `.zip` bundle. The deploy step is engine-agnostic, your agent uploads the build regardless of how it was made.
 
-## Supported engines
+## Android engines
 
 <CardGroup cols={2}>
   <Card icon="android" title="Native Android">
@@ -23,16 +23,31 @@ nowrun works with any engine that outputs an Android `.apk` file. The deploy ste
   </Card>
 </CardGroup>
 
-## Requirements
+### Android requirements
 
 Any valid `.apk` file is supported. Keep the following in mind:
 
-- The APK must target Android — `armeabi-v7a`, `arm64-v8a`, or `x86_64` are all standard build outputs and work as expected.
+- The APK must target Android. `armeabi-v7a`, `arm64-v8a`, and `x86_64` are all standard build outputs and work as expected.
 - Both debug and release APKs are supported.
-- nowrun does not impose a minimum Android API level — follow your engine's own recommendations for your target audience.
+- nowrun does not impose a minimum Android API level, follow your engine's own recommendations for your target audience.
 
 <Info>
   If your engine produces an `.aab` (Android App Bundle) instead of an `.apk`, you'll need to configure your build to output an APK. The `.aab` format is not currently supported.
 </Info>
 
-The agent instructs nowrun with the path to your APK automatically — no extra configuration is required on your end.
+## HTML5
+
+nowrun also deploys HTML5 web games. If you have a **web app**, a **web game**, or any HTML5 build, this is the path: package it as a `.zip` web bundle and deploy it the same way you would an APK.
+
+Create the app with the `h5` type, then deploy the bundle:
+
+```bash
+nowrun app create --title "My Game" --type h5
+nowrun deploy -f ./build/web.zip
+```
+
+<Note>
+  HTML5 apps skip the Android-specific setup. The `--package`, `--publisher`, and `--category` options on `nowrun app create` are required for `--type android` only, and the `-av`/`--apk_version` and `-vc`/`--version_code` flags on `nowrun deploy` are Android-only.
+</Note>
+
+The agent passes nowrun the path to your build automatically, no extra configuration is required on your end.

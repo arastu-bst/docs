@@ -1,7 +1,7 @@
 ---
 title: "nowrun FAQ: Account Setup, CLI, Deploy, and Pricing"
 sidebarTitle: "FAQ"
-description: "Answers to the most common questions about nowrun: account setup, card verification, supported apps, pricing, and how the agent workflow works."
+description: "Answers to the most common questions about nowrun: account setup, card verification, supported apps including Android and HTML5 web games, pricing, and how the agent workflow works."
 ---
 
 Quick answers to the most common questions about nowrun — from account setup and card verification to supported engines and the agent-driven workflow.
@@ -25,7 +25,9 @@ Quick answers to the most common questions about nowrun — from account setup a
 </Accordion>
 
 <Accordion title="What engines are supported?">
-  Any engine that produces an `.apk` file is supported: native Android, Unity, Godot, Unreal Engine, and others. The `.aab` (Android App Bundle) format is **not** supported — configure your build pipeline to output a plain `.apk` file.
+  For Android, any engine that produces an `.apk` file is supported: native Android, Unity, Godot, Unreal Engine, and others. The `.aab` (Android App Bundle) format is **not** supported, configure your build pipeline to output a plain `.apk` file.
+
+  nowrun also supports **HTML5** web games, deployed as a `.zip` web bundle. Create the app with `nowrun app create --type h5`, then deploy the bundle with `nowrun deploy -f <bundle>.zip`.
 </Accordion>
 
 <Accordion title="Can I update my app after deploying?">
