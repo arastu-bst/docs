@@ -42,16 +42,18 @@ nowrun init -t <token>
 ## Step 3: hand off to the installed skill
 
 ```bash
-nowrun help --json
+nowrun --json help
 ```
+
+`--json` is a global flag and must come **before** the subcommand. `nowrun help --json` fails, and so does every other trailing form such as `nowrun app list --json`.
 
 That returns every command, argument, and the current workflow in machine-readable form. It ships with the CLI, so it reflects the version actually installed. Use it and `nowrun <command> -h` rather than recalling flags from here.
 
-Roughly: create an app, deploy a build, poll status. Take the specifics from `nowrun help --json`.
+Roughly: create an app, deploy a build, poll status. Take the specifics from `nowrun --json help`.
 
 ## Snags worth knowing
 
-- `nowrun: command not found` right after install usually means the package installed but Python's scripts directory is not on `PATH`. `python -m nowrun --version` confirms it before you treat the install as failed.
+- `nowrun: command not found` right after install usually means the package installed but Python's scripts directory is not on `PATH`. Check with `pip show nowrun`; if it is installed, the binary is in the `bin` directory next to the reported `Location` (on macOS system Python that is `~/Library/Python/3.x/bin`). Call it by full path, or add that directory to `PATH`.
 - Required flags differ by app type. `-h` on the command lists them.
 - Deploys run against the user's account and are billable.
 
