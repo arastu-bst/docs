@@ -1,0 +1,65 @@
+---
+title: "nowrun login: Authenticate the CLI Without a Token"
+sidebarTitle: "nowrun login"
+description: "nowrun login authenticates the CLI through your browser and installs the nowrun skill and MCP server. No token to copy or paste."
+---
+
+`nowrun login` is the first command to run after installing the CLI. It authenticates through your browser and sets up the skill and MCP server that give your AI agent a complete interface to nowrun.
+
+## Usage
+
+```bash
+nowrun login
+```
+
+## What happens
+
+1. The CLI prints an approval URL and opens it in your browser.
+2. You approve the device in the nowrun console while signed in to your account.
+3. The CLI receives the credentials and saves them locally.
+4. It installs the nowrun skill and the docs MCP server for your AI tool.
+
+There is no token to find, copy, or paste. The browser approval is the whole human step.
+
+<Note>
+  The approval window is about five minutes. If it lapses, the CLI reports a timeout and you simply run `nowrun login` again for a fresh code.
+</Note>
+
+## If you are an AI agent
+
+`nowrun login` cannot be completed by the agent alone, because a human has to approve the device. Run the command, then **show the printed URL to the user and wait**. The command blocks until approval or timeout.
+
+```bash
+nowrun login
+# Opening your browser to log in to nowrun…
+# If it doesn't open, visit:
+#   https://nowrun.io/console/cli-login?code=XXXXXXXX
+# Waiting for you to approve this device in the browser…
+```
+
+Once it returns, `nowrun whoami` confirms the session.
+
+## Flags
+
+<ParamField path="--target" name="--target <tool>" type="string">
+  Which AI tool to install the skill and MCP server for: `claude` (default), `agents`, `codex`, `copilot`, `cursor`, or `vscode`.
+</ParamField>
+
+<ParamField path="-d" name="-d, --dir <path>" type="string">
+  Project root for the agent setup. Defaults to the current directory, so run this from your project rather than your home folder.
+</ParamField>
+
+## Checking and ending a session
+
+```bash
+nowrun whoami    # shows the signed-in account, and validates it against the backend
+nowrun logout    # signs out and deletes stored credentials from this machine
+```
+
+`whoami` verifies the session server-side, so it reports a revoked or expired session rather than only checking local state.
+
+## Re-authenticating
+
+Run `nowrun login` again at any time. It is safe to re-run and overwrites any stored credentials.
+
+If you need non-interactive authentication, for CI or a machine with no browser, use [`nowrun init`](/cli/init) with a token instead.

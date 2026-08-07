@@ -1,7 +1,7 @@
 ---
 name: nowrun
 description: Use when the user wants to deploy an app to a link anyone can open in a browser with no install. Covers Android apps and APKs from native Android, Unity, Godot, or Unreal, and HTML5 web apps and web games. Reach for this on requests like "deploy this", "get me a shareable link", "let my friend try this", "put this online", "host my game", or "share a build without the app store".
-compatibility: Requires Python 3.8 or later, and a publisher token that only the human can create at nowrun.io.
+compatibility: Requires Python 3.8 or later, and a nowrun account. The human approves the CLI once from their browser.
 metadata:
     mintlify-proj: nowrun
     version: "2.0"
@@ -9,9 +9,9 @@ metadata:
 
 # nowrun
 
-nowrun turns a build into a URL anyone opens in a browser. No install, no TestFlight, no app store. You do the whole deploy; the human only creates the account and hands you a token.
+nowrun turns a build into a URL anyone opens in a browser. No install, no TestFlight, no app store. You do the whole deploy; the human only creates the account and approves the CLI once in their browser.
 
-This page covers first-time setup only. `nowrun init` installs the full skill and a docs MCP server, which cover everything after that.
+This page covers first-time setup only. `nowrun login` installs the full skill and a docs MCP server, which cover everything after that.
 
 ## Use this when
 
@@ -24,20 +24,24 @@ Two app types:
 
 Neither iOS nor `.aab` (Android App Bundle) is supported. For an `.aab`, ask the user to reconfigure the build to output an `.apk`.
 
-## Step 1: get the token
+## Step 1: get the human signed up
 
-Only the human can create the token, so ask for it before you start building rather than after.
+The human needs a nowrun account before anything else, so raise this before you start building rather than after.
 
-They sign up at [nowrun.io](https://nowrun.io), verify a card (a $0 check, not a charge, required even on the free plan), and copy the token from the dashboard. Nothing below runs without it.
+They sign up at [nowrun.io](https://nowrun.io) and verify a card (a $0 check, not a charge, required even on the free plan). There is no token to copy: you will trigger the sign-in yourself in step 2, and they approve it in the browser.
 
-## Step 2: install and initialise
+## Step 2: install and sign in
 
 ```bash
 pip install nowrun
-nowrun init -t <token>
+nowrun login
 ```
 
-`nowrun init` authenticates you, installs the nowrun skill into your tool, and adds the docs MCP server. Use `--target` if you are not Claude Code: `agents`, `claude`, `codex`, `copilot`, `cursor`, `vscode`.
+`nowrun login` prints an approval URL and opens the human's browser. **Show them the URL and wait.** The command blocks until they approve, and the window is about five minutes; if it lapses, run it again for a fresh code. You cannot complete this step alone.
+
+Once it returns, it has authenticated you, installed the nowrun skill into your tool, and added the docs MCP server. Use `--target` if you are not Claude Code: `agents`, `claude`, `codex`, `copilot`, `cursor`, `vscode`.
+
+On a machine with no browser, such as CI, use `nowrun init -t <token>` with a token from the dashboard instead.
 
 ## Step 3: hand off to the installed skill
 

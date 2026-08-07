@@ -43,6 +43,7 @@
         "group": "CLI Reference",
         "pages": [
           "cli/overview",
+          "cli/login",
           "cli/init",
           "cli/deploy"
         ]

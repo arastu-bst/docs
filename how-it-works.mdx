@@ -9,14 +9,14 @@ When your agent runs `nowrun deploy`, your APK travels through a pipeline that e
 ## The deploy pipeline
 
 1. **Your agent builds the APK.** Your AI agent compiles your project using whatever engine you are working with, such as native Android, Unity, Godot, or Unreal. The output is a standard `.apk` file, or a `.zip` web bundle for an HTML5 web app.
-2. **The agent runs the deploy command.** Using the nowrun skill it learned during `nowrun init`, the agent calls the appropriate `nowrun` command to start the upload.
+2. **The agent runs the deploy command.** Using the nowrun skill it learned during `nowrun login`, the agent calls the appropriate `nowrun` command to start the upload.
 3. **The CLI uploads the APK to nowrun.** The nowrun CLI packages the APK or web bundle and sends it to the nowrun platform over a secure connection.
 4. **nowrun streams the app at a unique URL.** The platform processes the APK or web bundle and exposes it at a unique, browser-accessible URL tied to your account and version.
 5. **Anyone with the link opens it in a browser.** No install required — users click the link and your app runs immediately, on any device with a modern browser.
 
 ## The nowrun skill and MCP server
 
-Running `nowrun init -t <token>` does two things beyond authenticating your CLI:
+Running `nowrun login` does two things beyond authenticating your CLI:
 
 - **Installs the nowrun skill** — a structured set of instructions that teaches your AI agent every command the nowrun CLI exposes, along with when and how to use each one.
 - **Installs the MCP server** — a local server that gives your agent a programmatic, structured interface to nowrun, so it can query state, trigger deploys, and retrieve links without relying on raw shell output alone.

@@ -13,7 +13,7 @@ Quick answers to the most common questions about nowrun — from account setup a
 </Accordion>
 
 <Accordion title="How do I find my token?">
-  Log in to the dashboard at [nowrun.io](https://nowrun.io), locate your token in the dashboard, and copy it. Paste it directly into your AI agent when prompted, or pass it with `nowrun init -t <token>`.
+  You do not need one for normal use. Your agent runs `nowrun login`, a browser tab opens, and you approve the device. Tokens are only needed for CI or headless machines, where you can copy one from the dashboard and use `nowrun init -t <token>`. Paste it directly into your AI agent when prompted, or pass it with `nowrun init -t <token>`.
 </Accordion>
 
 <Accordion title="What Python version is required?">
@@ -39,7 +39,7 @@ Quick answers to the most common questions about nowrun — from account setup a
 </Accordion>
 
 <Accordion title="Can I deploy without an AI agent?">
-  Yes — the CLI works independently. Run `nowrun init -t <token>` to authenticate, then `nowrun deploy` to push your APK. That said, nowrun is designed and optimized for agent-driven workflows, so using an AI agent gives you the smoothest experience.
+  Yes, the CLI works independently. Run `nowrun login` to authenticate, then `nowrun deploy` to push your build. That said, nowrun is designed and optimized for agent-driven workflows, so using an AI agent gives you the smoothest experience.
 </Accordion>
 
 <Accordion title="How do I upgrade my plan?">

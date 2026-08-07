@@ -20,10 +20,10 @@ pip install nowrun
 
 ### Authenticate and set up the skill
 
-Run `nowrun init` with your token from [nowrun.io](https://nowrun.io). This authenticates the CLI and installs the nowrun skill and MCP server that your AI agent uses:
+Run `nowrun login`. Your browser opens, you approve the device, and the CLI authenticates. This and installs the nowrun skill and MCP server that your AI agent uses:
 
 ```bash
-nowrun init -t <your-token>
+nowrun login
 ```
 
 Replace `<your-token>` with the token shown in your nowrun dashboard.
@@ -31,13 +31,13 @@ Replace `<your-token>` with the token shown in your nowrun dashboard.
 <Note>
   Make sure the following are ready before deploying:
 
-  - The nowrun CLI is installed and `nowrun init -t <token>` has completed successfully.
+  - The nowrun CLI is installed and `nowrun login` has completed successfully.
   - An Android `.apk` file is built and ready on your machine.
 </Note>
 
 ## Tell your agent to deploy
 
-You don't need to memorize any commands. Simply ask your AI agent to deploy the app — it already knows what to do from the nowrun skill installed during `nowrun init`.
+You don't need to memorize any commands. Simply ask your AI agent to deploy the app — it already knows what to do from the nowrun skill installed during `nowrun login`.
 
 **Example prompt:**
 

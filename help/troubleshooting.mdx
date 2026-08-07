@@ -40,13 +40,13 @@ This page covers the most common issues when setting up and using nowrun, and ho
   ```
 </Accordion>
 
-<Accordion title="`nowrun init` fails with an authentication error">
+<Accordion title="`nowrun login` fails or times out">
   **Cause:** The token you provided is invalid or has expired.
 
   **Fix:** Log in to the nowrun dashboard at [nowrun.io](https://nowrun.io), copy a fresh token, and re-run init with the new value:
 
   ```bash
-  nowrun init -t <new-token>
+  nowrun login
   ```
 </Accordion>
 
@@ -67,12 +67,12 @@ This page covers the most common issues when setting up and using nowrun, and ho
 </Accordion>
 
 <Accordion title="Agent says it doesn't know how to deploy / can't find the skill">
-  **Cause:** The nowrun skill and MCP server are installed during `nowrun init`. If init was skipped or failed, the agent won't have access to the nowrun command surface.
+  **Cause:** The nowrun skill and MCP server are installed during `nowrun login`. If login was skipped or failed, the agent won't have access to the nowrun command surface.
 
-  **Fix:** Run `nowrun init -t <token>` again to re-install the skill and MCP server, then ask your agent to retry the deployment.
+  **Fix:** Run `nowrun login` again to re-install the skill and MCP server, then ask your agent to retry the deployment.
 
   ```bash
-  nowrun init -t <token>
+  nowrun login
   ```
 </Accordion>
 

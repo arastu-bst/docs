@@ -1,40 +1,50 @@
 ---
-title: "nowrun CLI Authentication: Linking Your Account Token"
+title: "nowrun CLI Authentication: Sign In From Your Browser"
 sidebarTitle: "Authentication"
-description: "Run nowrun init with your token to authenticate the CLI and install the nowrun skill and MCP server, so your AI agent can deploy APKs immediately."
+description: "Run nowrun login to authenticate the CLI through your browser, with no token to copy. It also installs the nowrun skill and MCP server so your agent can deploy immediately."
 ---
 
-Authentication links the CLI to your nowrun account using your personal token. Running `nowrun init` does double duty: it authenticates the CLI with your account **and** installs the nowrun skill and MCP server, so your AI agent can self-discover all available commands from that point forward.
+Authentication links the CLI to your nowrun account. Running `nowrun login` does double duty: it signs the CLI in **and** installs the nowrun skill and MCP server, so your AI agent can self-discover every available command from that point on.
 
-## Get your token
-
-Find your token in the nowrun dashboard at [nowrun.io](https://nowrun.io) after creating your account. Copy it and pass it to your agent — your agent does the rest.
-
-## Run `nowrun init`
-
-Your agent runs the following command using the token you provide:
+## Run `nowrun login`
 
 ```bash
-nowrun init -t <token>
+nowrun login
 ```
 
-This single command does two things:
+The CLI prints an approval URL and opens your browser. Approve the device while signed in to your nowrun account, and the CLI picks up the session automatically.
 
-1. **Authenticates** the CLI with your nowrun account so deploys are attributed to you.
-2. **Installs the nowrun skill and MCP server**, which teach your agent the full set of available commands and how to use them.
+There is no token to find or paste. Approving in the browser is the entire step.
 
-<Warning>
-  Keep your token private. Do not share it with others or commit it to source control. If your token is compromised, generate a new one from the nowrun dashboard.
-</Warning>
+<Note>
+  The approval window is about five minutes. If it lapses you get a clear timeout, and running `nowrun login` again issues a fresh code.
+</Note>
 
-## What happens next
+## What it sets up
 
-After `nowrun init` succeeds, your agent is ready to deploy Android APKs to live browser URLs. It can run `nowrun help` or `nowrun <command> -h` at any time to discover available commands on its own — no static reference required.
+1. **Authenticates** the CLI with your account, so deploys are attributed to you.
+2. **Installs the nowrun skill and MCP server**, which teach your agent the full command surface and how to use it.
 
-## Re-authenticating
+## If your agent is running this
 
-If you move to a new machine or need to re-authenticate for any reason, simply run `nowrun init -t <token>` again with your token. The command is safe to re-run.
+The agent cannot approve the device for you. It will run `nowrun login`, show you the URL, and wait until you approve. Once you do, it continues on its own.
+
+## Check the session
+
+```bash
+nowrun whoami
+```
+
+This validates against the backend rather than only checking local state, so it tells you when a session has been revoked or has expired instead of reporting a stale one as healthy.
+
+## Re-authenticating and signing out
+
+`nowrun login` is safe to re-run at any point, on a new machine or after a fresh install. `nowrun logout` signs out and deletes the stored credentials.
+
+## No browser available?
+
+For CI, containers, or a remote machine with no browser, use [`nowrun init -t <token>`](/cli/init) with a publisher token from your dashboard.
 
 ---
 
-Next: [Deploy your first APK](/deploying/your-first-deploy)
+Next: [Deploy your first app](/deploying/your-first-deploy)

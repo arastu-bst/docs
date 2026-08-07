@@ -13,7 +13,7 @@ By the end of this page you will have a nowrun account, an active free plan, and
   <Step title="Verify your card">
     Add a payment method in the nowrun dashboard. nowrun runs a **$0 authorization check** — you are not charged. The verification activates your free plan and prevents abuse, which is what keeps the free tier free for everyone.
   </Step>
-  <Step title="Copy your token">
+  <Step title="Approve the CLI in your browser">
     After verification, open the nowrun dashboard and copy your personal API token. You will paste this into your agent in the next step.
   </Step>
   <Step title="Tell your agent to deploy">
@@ -23,7 +23,7 @@ By the end of this page you will have a nowrun account, an active free plan, and
 
     ```bash
     pip install nowrun
-    nowrun init -t <token>
+    nowrun login
     nowrun deploy
     ```
 
@@ -37,7 +37,7 @@ By the end of this page you will have a nowrun account, an active free plan, and
 </Steps>
 
 <Note>
-  You do not need to give your agent a command cheat sheet. `nowrun init` installs the nowrun skill and MCP server, which teach the agent every available CLI command. The agent uses `nowrun help` and `nowrun <command> -h` to discover what it needs on its own.
+  You do not need to give your agent a command cheat sheet. `nowrun login` installs the nowrun skill and MCP server, which teach the agent every available CLI command. The agent uses `nowrun help` and `nowrun <command> -h` to discover what it needs on its own.
 </Note>
 
 ## Next steps

@@ -1,10 +1,10 @@
 ---
 title: "Create Your nowrun Account and Activate the Free Plan"
 sidebarTitle: "Account"
-description: "Sign up at nowrun.io, verify your card to activate the free plan, and locate your deploy token — the three things only you can do."
+description: "Sign up at nowrun.io and verify your card to activate the free plan. Then approve the CLI from your browser. These are the only steps you do by hand."
 ---
 
-Account setup is the only part of the nowrun workflow you do manually. Once you hand your token to your AI agent, it takes over — installing the CLI, running `nowrun init`, and deploying your APKs from that point forward. The three steps below are yours to complete.
+Account setup is the only part of the nowrun workflow you do manually. Once you approve the CLI in your browser, your agent takes over, installing the CLI, authenticating, and deploying your apps from that point forward. The steps below are yours to complete.
 
 <Steps>
   <Step title="Sign up">
@@ -17,8 +17,8 @@ Account setup is the only part of the nowrun workflow you do manually. Once you 
       You won't be charged during verification. The $0 check is a standard card authorization that confirms the card is valid.
     </Note>
   </Step>
-  <Step title="Copy your token">
-    After signup, find your token in the nowrun dashboard. Copy it — you'll paste it to your AI agent in the next step. Your agent uses this token to authenticate the CLI and gain access to all deploy commands.
+  <Step title="Approve the CLI in your browser">
+    When your agent runs `nowrun login`, a browser tab opens asking you to approve the device. Approve it and the CLI is authenticated. There is no token to copy or paste.
   </Step>
 </Steps>
 
@@ -28,4 +28,4 @@ You can upgrade your plan, view usage, and manage your deployed apps from the no
 
 ---
 
-Next: [Authenticate the CLI with your token](/setup/authentication)
+Next: [Authenticate the CLI](/setup/authentication)

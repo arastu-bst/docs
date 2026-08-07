@@ -16,7 +16,7 @@ The nowrun CLI, installed and connected:
 
 ```bash
 pip install nowrun
-nowrun init -t <token>   # auth + skill + MCP; get the token from nowrun.io
+nowrun login             # auth + skill + MCP; approve the device in your browser
 nowrun whoami            # confirm you're authenticated
 ```
 
@@ -52,7 +52,7 @@ Run top to bottom. Add `--json` to any command for machine-readable output.
 ```bash
 # once: install + connect (ask the human for the token first)
 pip install nowrun
-nowrun init -t <token>
+nowrun login
 nowrun whoami
 
 # deploy the bundled app
@@ -94,7 +94,7 @@ Most F-Droid games are GPL; if you're okay with copyleft there's a much wider se
 
 ## Troubleshooting
 
-- **`Not logged in`** — run `nowrun init -t <token>` (get the token from nowrun.io).
+- **`Not logged in`** — run `nowrun login` and approve the device in your browser.
 - **Deploy rejected / something missing** — run `nowrun validate` and fix what it flags.
 - **`status` stays on `progress`** — that's the cloud build running; keep polling.
 
