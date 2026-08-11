@@ -41,9 +41,9 @@ This page covers the most common issues when setting up and using nowrun, and ho
 </Accordion>
 
 <Accordion title="`nowrun login` fails or times out">
-  **Cause:** The token you provided is invalid or has expired.
+  **Cause:** The approval window lapsed. It is about five minutes, and it expires quietly.
 
-  **Fix:** Log in to the nowrun dashboard at [nowrun.io](https://nowrun.io), copy a fresh token, and re-run init with the new value:
+  **Fix:** Run it again for a fresh approval link. If no browser opened, use the URL the command prints:
 
   ```bash
   nowrun login

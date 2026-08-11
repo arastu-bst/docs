@@ -44,7 +44,6 @@
         "pages": [
           "cli/overview",
           "cli/login",
-          "cli/init",
           "cli/deploy"
         ]
       },
@@ -73,5 +72,11 @@
   },
   "footer": {
     "socials": {}
-  }
+  },
+  "redirects": [
+    {
+      "source": "/cli/init",
+      "destination": "/cli/login"
+    }
+  ]
 }

@@ -41,7 +41,7 @@ nowrun login
 
 Once it returns, it has authenticated you, installed the nowrun skill into your tool, and added the docs MCP server. Use `--target` if you are not Claude Code: `agents`, `claude`, `codex`, `copilot`, `cursor`, `vscode`.
 
-On a machine with no browser, such as CI, use `nowrun init -t <token>` with a token from the dashboard instead.
+If the machine has no browser, the printed URL still works: the human can open it on their phone or another computer and approve from there.
 
 ## Step 3: hand off to the installed skill
 

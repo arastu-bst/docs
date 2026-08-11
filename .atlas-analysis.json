@@ -36,7 +36,6 @@
         "group": "CLI Reference",
         "pages": [
           "cli/overview",
-          "cli/init",
           "cli/deploy"
         ]
       },
@@ -58,7 +57,6 @@
     "Dashboard for managing apps, links, versions, and plan"
   ],
   "publicApiSurface": [
-    "nowrun init -t <token>",
     "nowrun deploy",
     "nowrun help",
     "nowrun <command> -h",

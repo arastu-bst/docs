@@ -41,9 +41,9 @@ This validates against the backend rather than only checking local state, so it 
 
 `nowrun login` is safe to re-run at any point, on a new machine or after a fresh install. `nowrun logout` signs out and deletes the stored credentials.
 
-## No browser available?
+## No browser on this machine?
 
-For CI, containers, or a remote machine with no browser, use [`nowrun init -t <token>`](/cli/init) with a publisher token from your dashboard.
+`nowrun login` prints the approval URL before it tries to open anything. On a server, a container, or over SSH, open that URL on your phone or another computer and approve there. The waiting command picks the session up as soon as you do.
 
 ---
 
