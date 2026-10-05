@@ -1,39 +1,64 @@
 ---
-title: "Add your app to nowrun"
+title: "Add your app"
 sidebarTitle: "Add your app"
-description: "Use the nowrun CLI to add your Android app to nowrun and open it in ChatGPT. Your coding agent does most of the work."
+description: "The complete procedure for adding an Android app to nowrun with the CLI: account, sign-in, listing, deploy, open."
 ---
 
-You need a nowrun account and an Android build of your app (an `.apk`). Your coding agent can do the rest.
+This is the full procedure. Each step says who does it.
 
-## Hand it to your agent
-
-Give your coding agent this line:
+**You need:** an Android `.apk` and Python 3.8 or later. People can hand all of this to a coding agent:
 
 ```text
 Enable my app on nowrun using the nowrun CLI. For the full steps, read https://nowrun.io/docs/skill.md
 ```
 
-It installs the CLI, signs you in, creates your app and deploys your build. The steps below are what it does, so you know what to expect.
+## 1. Create an account (human)
 
-<Steps>
-  <Step title="Create your account">
-    Sign up at [nowrun.io](https://nowrun.io) and verify a card. It's a $0 check, with no charge on the free plan.
-  </Step>
-  <Step title="Connect the CLI">
-    Your agent runs `pip install nowrun` and `nowrun login`. Your browser opens and you approve the sign-in. That's the only step you do yourself.
-  </Step>
-  <Step title="Describe your app">
-    Your agent asks you for a short description, a one-line pitch and a few example requests your app handles. These help ChatGPT understand when your app fits what someone asks. See [Describe your app](/deploying/describe-your-app).
-  </Step>
-  <Step title="Deploy your build">
-    Your agent creates the app and deploys your APK, then waits until it's ready.
-  </Step>
-  <Step title="Open it in ChatGPT">
-    With the [nowrun plugin](/get-the-plugin) connected, ask ChatGPT for your app by name and tap **Open**. Your app is private, so only you can see it.
-  </Step>
-</Steps>
+Sign up at [nowrun.io](https://nowrun.io) and verify a card. It is a $0 check, not a charge.
+
+## 2. Install and sign in (agent, then human)
+
+```bash
+pip install nowrun
+nowrun login
+```
+
+`nowrun login` prints a sign-in link and opens a browser. The human approves it. The link is valid for about five minutes.
+
+**Done when:** `nowrun whoami` shows the account.
+
+## 3. Collect the listing (human answers, agent records)
+
+Ask the human for a description, a one-line pitch and two to four example requests. Do not invent them. Rules and limits: [Describe your app](/deploying/describe-your-app).
+
+## 4. Create the app (agent)
+
+```bash
+nowrun app create --from-apk app.apk \
+  --title "Recipe Box" --category "<from nowrun app categories>" \
+  --description "Save recipes and turn them into a shopping list." \
+  --pitch "Go from recipe to shopping list in one step." \
+  --intent "What can I make with chicken and rice?" \
+  --intent "Add these ingredients to my list" \
+  --kind app --orientation portrait
+```
+
+`--from-apk` reads the package name and icon from the build. Run `nowrun app categories` for the category list. The new app is linked to the current folder, so later commands don't need `-a`.
+
+**Done when:** the command returns an `app_id`. If fields are missing, it lists them.
+
+## 5. Deploy (agent)
+
+```bash
+nowrun deploy -f app.apk --wait
+```
+
+**Done when:** `job_status` is `success`. If it is `failed`, see [Deploy and open](/deploying/your-first-deploy#if-the-deploy-fails).
+
+## 6. Open it (human)
+
+With the [nowrun plugin](/get-the-plugin) connected, the human asks for the app by name in ChatGPT and taps **Open**. The app is private to them and needs no install step.
 
 ## Next
 
-Add app functions so ChatGPT can act inside your app: [Add app functions](/sdk/app-functions).
+[Add app functions](/sdk/app-functions) so the assistant can act inside the app.

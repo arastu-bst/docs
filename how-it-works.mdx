@@ -1,41 +1,26 @@
 ---
 title: "How nowrun works"
 sidebarTitle: "How it works"
-description: "How nowrun runs your Android app inside ChatGPT: the plugin, your nowrun container, the CLI, and app functions from the nowrun SDK."
+description: "The nowrun plugin, your nowrun container, the CLI, and app functions from the nowrun SDK."
 ---
 
-nowrun runs real Android apps in the cloud and streams them into ChatGPT through the nowrun plugin. Nothing is installed on the user's phone or computer.
-
-## The pieces
+nowrun runs Android apps in the cloud and streams them into ChatGPT through the nowrun plugin. Nothing is installed on the user's device.
 
 | Piece | What it does |
 | --- | --- |
-| **nowrun plugin** | Connects ChatGPT to nowrun. Users add it once from **Plugins** in ChatGPT. |
-| **Your nowrun container** | Where a user's apps run. Each user's container starts empty, and they choose what goes in it. |
-| **nowrun CLI** | How you add your app to nowrun. Your coding agent runs it for you. |
-| **nowrun SDK** | How you add app functions, so ChatGPT can act inside your app. |
+| **nowrun plugin** | Connects a ChatGPT account to nowrun. Each person adds it once. |
+| **nowrun container** | Where a person's apps run. It starts empty and they choose what goes in it. |
+| **nowrun CLI** | Adds your app to nowrun. Your coding agent runs it. |
+| **nowrun SDK** | Adds app functions to your app. |
 
-## What ChatGPT can do with your app
+## What the assistant can do with your app
 
-**Open it.** A user asks for your app by name and it opens in the chat.
+| Level | What it means | What you need |
+| --- | --- | --- |
+| **Open** | Someone asks for your app by name and it opens in the chat. | Your app on nowrun |
+| **See** | The assistant reads the screen and tells the person where to tap. | Nothing extra |
+| **Act** | The assistant runs actions inside your app, like adding an item to a list. | App functions |
 
-**See it.** While your app is open, ChatGPT can look at the screen and tell the user where to tap. Every app gets this, with no extra work.
+## Visibility
 
-**Use it.** If you add app functions with the nowrun SDK, ChatGPT can do things inside your app for the user, like adding an item to a list or changing a setting. This is the part that makes your app feel built for ChatGPT.
-
-## From build to ChatGPT
-
-1. **Your agent creates the app** on nowrun with the CLI, including a short description of what it does.
-2. **Your agent deploys your APK.** nowrun gets it ready to run in the cloud.
-3. **You open it in ChatGPT.** New apps are private, so only you can see and open yours. It's already in your container, so there's no install step.
-
-## Next steps
-
-<CardGroup cols={2}>
-  <Card title="Add your app" href="/quickstart">
-    Sign up, connect the CLI and deploy your app.
-  </Card>
-  <Card title="Add app functions" href="/sdk/app-functions">
-    Let ChatGPT act inside your app.
-  </Card>
-</CardGroup>
+New apps are private. Only the owner can see and open them. Your own app is already in your container, so it opens without an install step.

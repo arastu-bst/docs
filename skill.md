@@ -9,7 +9,7 @@ metadata:
 
 # nowrun
 
-nowrun runs Android apps inside ChatGPT. Users connect the nowrun plugin in ChatGPT, then open apps in the chat. ChatGPT can see the app's screen, and call the app's functions if the app adds them with the nowrun SDK.
+nowrun runs Android apps inside ChatGPT. People connect the nowrun plugin, then open apps in the chat. The assistant can see the app's screen, and call the app's functions if the app adds them with the nowrun SDK.
 
 You add the user's app to nowrun with the `nowrun` CLI. The human only creates the account and approves the CLI once in their browser.
 
@@ -45,7 +45,8 @@ Every app needs its full listing, and `app create` refuses to run without it:
 - title, package name (`-p`), category, kind (`app` or `game`), orientation, icon
 - **description**: one or two sentences on what the app does
 - **pitch**: one line on why someone would use it
-- **intents** (`--intent`, repeatable): requests a person would actually say that the app handles, like "add these ingredients to my shopping list"
+- **intents** (`--intent`, repeatable, at least one): requests a person would actually say that the app handles, like "add these ingredients to my shopping list"
+- limits: description up to 500 characters, pitch up to 200; kind is `app` or `game`; orientation is `portrait` or `landscape`; icon is a square PNG, JPEG or WebP, at least 192 px, up to 1 MB
 
 `--from-apk app.apk` reads the package name and icon from the build. `nowrun app categories` lists valid categories.
 
@@ -57,15 +58,15 @@ Every app needs its full listing, and `app create` refuses to run without it:
 nowrun deploy -f app.apk --wait
 ```
 
-It reads the version from the APK and refuses a build whose package does not match the app.
+It reads the version from the APK and refuses a build whose package does not match the app. Done when `job_status` is `success`. On `failed`, read the error, run `nowrun validate`, fix, and deploy again. Do not redeploy while a deploy is in progress.
 
 ## Step 5: tell the human how to open it
 
-New apps are private: only the owner can see and open them. Tell the human to connect the nowrun plugin in ChatGPT (**Plugins**, search **nowrun**, tap **+**, sign in), then ask ChatGPT for the app by name and tap **Open**. Their own app needs no install step. Guide: https://nowrun.io/docs/get-the-plugin
+New apps are private: only the owner can see and open them. Tell the human to connect the nowrun plugin (**Plugins**, search **nowrun**, tap **+**, sign in), then ask for the app by name in the chat and tap **Open**. Their own app needs no install step. Guide: https://nowrun.io/docs/get-the-plugin
 
 ## Step 6 (optional): app functions
 
-If the human wants ChatGPT to act inside the app, not just see it, add app functions with the nowrun SDK. Read https://nowrun.io/docs/sdk/app-functions before starting.
+If the human wants the assistant to act inside the app, it needs app functions from the nowrun SDK. The SDK guide is not published yet: read https://nowrun.io/docs/sdk/app-functions, and do not guess the SDK's API.
 
 ## Getting help from the CLI
 
@@ -74,7 +75,7 @@ nowrun help --json
 nowrun <command> -h
 ```
 
-`--json` works in any position. The help output ships with the CLI, so it matches the installed version. Use it rather than recalling flags from here.
+`--json` works in any position. Success prints `{"ok": true, "data": {...}}` with exit code 0; errors print `{"ok": false, "error": {...}}` with exit code 1. The help output ships with the CLI, so it matches the installed version. Use it rather than recalling flags from here.
 
 ## Snags worth knowing
 

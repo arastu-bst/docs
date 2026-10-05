@@ -1,29 +1,47 @@
 ---
-title: "Deploy your app and open it in ChatGPT"
+title: "Deploy and open your app"
 sidebarTitle: "Deploy and open"
-description: "Deploy your Android APK with the nowrun CLI, then open your app in ChatGPT through the nowrun plugin."
+description: "Deploy an Android APK with nowrun deploy, check the result, and open the app."
 ---
 
-Once your app is created, your agent deploys your build:
+## Deploy
 
 ```bash
-nowrun deploy -f app-release.apk --wait
+nowrun deploy -f app.apk --wait
 ```
 
-The CLI reads the version from your APK and refuses a build whose package name doesn't match your app, so you can't deploy to the wrong app by mistake. `--wait` blocks until the build is ready.
+The CLI reads the version from the APK and refuses a build whose package name doesn't match the app.
 
-## Open it in ChatGPT
+With `--json`, the result is:
 
-1. Make sure the [nowrun plugin](/get-the-plugin) is connected to your ChatGPT account.
-2. Ask ChatGPT for your app by name.
+```json
+{"ok": true, "data": {"submission_id": "…", "job_status": "success", "app_testing_url": "…"}}
+```
+
+**Done when:** `job_status` is `success`.
+
+## If the deploy fails
+
+| Symptom | Do this |
+| --- | --- |
+| `job_status` is `failed` | Read the error message, fix the build, deploy again. |
+| Fields missing | Run `nowrun validate` and set what it lists with `nowrun app update`. |
+| Package mismatch | Run `nowrun inspect app.apk` and check the package name matches the app. |
+| `.aab` file | Rebuild as `.apk`. See [Supported builds](/deploying/supported-engines). |
+| Not signed in | Run `nowrun login` and have the human approve it. |
+
+Don't redeploy while a deploy is in progress. Check with `nowrun status`.
+
+## Open the app (human)
+
+1. Connect the [nowrun plugin](/get-the-plugin) in ChatGPT, if not done already.
+2. Ask for the app by name.
 3. Tap **Open**.
 
-Your app starts out private, so only you can see and open it. It's already in your container, so there's no **Search and install** step.
+The app is private to its owner and is already in their container, so there is no **Search and install** step.
 
 ## Check it works
 
-- Ask the requests you wrote in [Describe your app](/deploying/describe-your-app) and see whether ChatGPT reaches for your app.
-- Ask *what do I do now?* with your app open, and check ChatGPT's answer matches what's on screen.
-- If you've added [app functions](/sdk/app-functions), ask for those actions and check they run.
-
-Next: [Managing your app](/deploying/managing-apps)
+- Ask one of the app's requests and check the app is chosen.
+- With the app open, ask `What do I do now?` and check the answer matches the screen.
+- If the app has [app functions](/sdk/app-functions), ask for those actions and check they run.

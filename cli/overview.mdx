@@ -1,36 +1,45 @@
 ---
 title: "nowrun CLI reference"
 sidebarTitle: "Overview"
-description: "Every nowrun CLI command your coding agent uses to add, deploy and manage your app."
+description: "Every nowrun CLI command, the JSON output format and exit codes."
 ---
 
-The nowrun CLI is built to be run by your coding agent. `nowrun login` installs a skill that teaches your agent how to use it, and your agent can always ask the CLI for help:
-
 ```bash
-nowrun help            # every command
-nowrun <command> -h    # one command
+nowrun help            # every command and the workflow
+nowrun <command> -h    # one command's flags
 ```
 
-Add `--json` to any command for machine-readable output.
+These ship with the CLI, so they always match the installed version.
+
+## Output for scripts and agents
+
+Add `--json` to any command, in any position.
+
+| Result | Output | Exit code |
+| --- | --- | --- |
+| Success | `{"ok": true, "data": {...}}` | 0 |
+| Error | `{"ok": false, "error": {...}}` | 1 |
 
 ## Commands
 
 | Command | What it does |
 | --- | --- |
-| `nowrun login` | Sign in through your browser and set up your agent |
+| `nowrun login` | Sign in through the browser and set up the agent skill and docs MCP |
 | `nowrun whoami` | Show who is signed in |
 | `nowrun logout` | Sign out on this machine |
 | `nowrun update` | Update the CLI, skill and docs MCP server |
-| `nowrun app create` | Create an app with its listing details |
-| `nowrun app categories` | List the categories an app can have |
+| `nowrun app create` | Create an app with its listing |
+| `nowrun app categories` | List valid categories |
 | `nowrun app update` | Change an app's details |
+| `nowrun app set-icon` | Change an app's icon |
 | `nowrun app list` | List your apps |
-| `nowrun app show` | Show one app, with its visibility and readiness |
+| `nowrun app show` | Show one app, its visibility and readiness |
 | `nowrun app delete` | Delete an app |
+| `nowrun use <app_id>` | Link this folder to an app |
 | `nowrun inspect app.apk` | Read a build's package name and version |
-| `nowrun validate` | Check what's missing before deploying |
+| `nowrun validate` | List missing fields |
 | `nowrun deploy` | Deploy a build |
-| `nowrun status` | Show what's live and in progress |
+| `nowrun status` | Show deploy status |
 | `nowrun cancel` | Cancel a deploy in progress |
 
-More detail: [nowrun login](/cli/login), [nowrun deploy](/cli/deploy).
+More: [nowrun login](/cli/login), [nowrun deploy](/cli/deploy).

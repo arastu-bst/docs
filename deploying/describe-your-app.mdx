@@ -1,42 +1,42 @@
 ---
-title: "Describe your app for ChatGPT"
+title: "Describe your app"
 sidebarTitle: "Describe your app"
-description: "Every nowrun app has a description, a one-line pitch and example requests. They help ChatGPT understand what your app does."
+description: "The listing fields every nowrun app needs, with flags, limits and allowed values."
 ---
 
-When your agent creates your app, it needs three things from you:
+Every app needs these fields. `nowrun app create` refuses to run until they are all set.
 
-| Field | What it is | CLI flag |
+| Field | Flag | Rule |
 | --- | --- | --- |
-| **Description** | One or two sentences on what your app does. | `--description` |
-| **Pitch** | One line on why someone would use it. | `--pitch` |
-| **Requests** | A few things people would ask for that your app handles. Add as many as you need. | `--intent` |
+| Title | `--title` | Required |
+| Package name | `-p` | Required. `--from-apk` reads it from the build. |
+| Category | `--category` | One of `nowrun app categories` |
+| Description | `--description` | What the app does. Up to 500 characters. |
+| Pitch | `--pitch` | Why someone would use it. One line, up to 200 characters. |
+| Requests | `--intent` | At least one. Repeat the flag for each. |
+| Kind | `--kind` | `app` or `game` |
+| Orientation | `--orientation` | `portrait` or `landscape` |
+| Icon | `--icon` | Square PNG, JPEG or WebP, at least 192 px, up to 1 MB. `--from-apk` reads it from the build. |
 
-These help ChatGPT understand what your app does and when it fits what someone asks.
+To pass the fields as a file instead, use `--data app.json`.
 
-## Write requests the way people talk
+## Description, pitch and requests
 
-<CardGroup cols={2}>
-  <Card title="Vague">
-    **Description:** The best cooking app!
+These help the assistant understand what your app does and when it fits a request.
 
-    **Pitch:** Cooking made easy
+- Get them from the app's owner. Don't invent claims.
+- Write requests the way a person would ask, not as keywords.
 
-    **Requests:** food, recipes, cooking
-  </Card>
-  <Card title="Clear">
-    **Description:** Save recipes and turn them into a shopping list.
+| | Vague | Clear |
+| --- | --- | --- |
+| Description | The best cooking app! | Save recipes and turn them into a shopping list. |
+| Pitch | Cooking made easy | Go from recipe to shopping list in one step. |
+| Requests | food, recipes, cooking | "What can I make with chicken and rice?" "Add these ingredients to my list" |
 
-    **Pitch:** Go from recipe to shopping list in one step.
+## Change them later
 
-    **Requests:** "What can I make with chicken and rice?" "Add these ingredients to my list"
-  </Card>
-</CardGroup>
+```bash
+nowrun app update --pitch "New pitch"
+```
 
-## Other fields
-
-The CLI also needs a title, package name, category, kind (`app` or `game`), orientation and icon. Your agent can read the package name and icon from your APK with `--from-apk`, and list the categories with `nowrun app categories`.
-
-To change any of these later, your agent runs `nowrun app update`.
-
-Next: [Deploy and open your app](/deploying/your-first-deploy)
+`nowrun validate` lists anything missing.

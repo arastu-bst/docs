@@ -1,36 +1,28 @@
 ---
-title: "nowrun docs: put your app inside ChatGPT"
+title: "nowrun docs"
 sidebarTitle: "Home"
-description: "nowrun runs your Android app inside ChatGPT. Add your app with the nowrun CLI, then add app functions with the nowrun SDK so ChatGPT can act inside it."
+description: "nowrun runs Android apps inside ChatGPT. Add your app with the nowrun CLI, then add app functions with the nowrun SDK."
 ---
 
-nowrun runs your Android app inside ChatGPT. People open it right in the chat, and ChatGPT can see the screen and help them use it. Add app functions with the nowrun SDK and ChatGPT can act inside your app for them.
+nowrun runs Android apps inside ChatGPT. People open an app in the chat, the assistant can see its screen, and with app functions it can act inside the app for them.
 
-There are two parts to building for nowrun:
+Building for nowrun has two parts:
 
 <CardGroup cols={2}>
   <Card title="1. Add your app" icon="terminal" href="/quickstart">
-    Use the nowrun CLI to put your Android app on nowrun. Your coding agent does most of the work.
+    Put your Android app on nowrun with the nowrun CLI.
   </Card>
   <Card title="2. Add app functions" icon="bolt" href="/sdk/app-functions">
-    Use the nowrun SDK to expose the actions people ask for most, so ChatGPT can do them inside your app.
+    Expose actions with the nowrun SDK so the assistant can run them inside your app.
   </Card>
 </CardGroup>
 
-## Start with the plugin
+To open apps, you need the nowrun plugin connected to your ChatGPT account: [Get the plugin](/get-the-plugin).
 
-To see your app in ChatGPT, you need the nowrun plugin connected to your ChatGPT account. It takes a minute, and it's the best way to see what nowrun does before you build.
+## For coding agents
 
-<Card title="Get the nowrun plugin" icon="plug" href="/get-the-plugin">
-  Connect nowrun to ChatGPT and try an app in the chat.
-</Card>
-
-## The fastest way to start
-
-Give your coding agent (Claude Code, Codex, Cursor or similar) this line:
+Start with [skill.md](https://nowrun.io/docs/skill.md). It is the complete procedure for adding an app. People can hand their agent this line:
 
 ```text
 Enable my app on nowrun using the nowrun CLI. For the full steps, read https://nowrun.io/docs/skill.md
 ```
-
-It installs the CLI, signs you in and adds your app. You approve the sign-in in your browser.

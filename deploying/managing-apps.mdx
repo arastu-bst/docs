@@ -1,24 +1,23 @@
 ---
-title: "Update and manage your app"
+title: "Manage your app"
 sidebarTitle: "Managing your app"
-description: "Deploy new versions, check status, change your app's details or delete it with the nowrun CLI."
+description: "Deploy new versions, check status, change details or delete an app with the nowrun CLI."
 ---
-
-Your agent handles all of this with the CLI. These are the commands it uses.
 
 | To | Run |
 | --- | --- |
-| Deploy a new version | `nowrun deploy -f app-release.apk --wait` |
+| Deploy a new version | `nowrun deploy -f app.apk --wait` |
 | See what's live and in progress | `nowrun status` |
+| Check one deploy | `nowrun status -s <submission_id>` |
 | Cancel a deploy in progress | `nowrun cancel` |
 | List your apps | `nowrun app list` |
-| See one app's details and readiness | `nowrun app show` |
-| Check what's missing before deploying | `nowrun validate` |
-| Change the description, pitch, icon or other details | `nowrun app update` |
-| Delete an app | `nowrun app delete` |
+| Show one app, its visibility and readiness | `nowrun app show` |
+| Check for missing fields | `nowrun validate` |
+| Change details | `nowrun app update` |
+| Change the icon | `nowrun app set-icon icon.png` |
+| Link this folder to an app | `nowrun use <app_id>` |
+| Delete an app (permanent) | `nowrun app delete` |
 
-Deleting an app is permanent and frees a slot on your plan.
+Commands use the app linked to the current folder. Pass `-a <app_id>` to target another.
 
-## Who can see your app
-
-New apps are private. Only you can see and open your app in ChatGPT.
+New apps are private: only the owner can see and open them.

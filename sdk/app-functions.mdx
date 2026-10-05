@@ -1,42 +1,34 @@
 ---
-title: "Add app functions with the nowrun SDK"
+title: "App functions"
 sidebarTitle: "App functions"
-description: "App functions let ChatGPT act inside your app. Add them with the nowrun SDK for Android (Java or Kotlin) and React Native (Expo)."
+description: "App functions let the assistant act inside your app. Add them with the nowrun SDK for Android (Java or Kotlin) and React Native (Expo)."
 ---
 
-App functions let ChatGPT act inside your app. Without them, ChatGPT can see your app's screen and tell people where to tap. With them, it can do the thing for them.
+App functions are actions your app exposes, like *add an item to the shopping list*. When someone asks for one in the chat, the assistant calls the function and your app runs it.
 
-For example, in a recipe app, someone could ask *add these ingredients to my shopping list*, and ChatGPT calls your app's function to do it.
+Without app functions, the assistant can only see the screen and tell people where to tap.
 
-<Info>
-  The full nowrun SDK guide and sample apps are coming to GitHub soon. This page covers what app functions are and how to plan them.
-</Info>
+<Warning>
+  **The SDK guide isn't published yet.** It is coming to GitHub with sample apps. **For agents:** don't guess the SDK's API. Tell the human the guide is coming and stop here.
+</Warning>
 
 ## How it works
 
-1. You add the nowrun SDK to your app and describe each function in plain words.
-2. When your app opens in ChatGPT, it tells nowrun which functions it has.
-3. ChatGPT reads those descriptions and calls the right function when someone asks for it.
-4. Your app runs the function and returns a short result, which ChatGPT uses in its reply.
+1. Your app adds the nowrun SDK and registers its functions, each with a plain-language description and named arguments.
+2. When the app opens, it reports its functions to nowrun.
+3. The assistant picks a function from its description and calls it with arguments.
+4. Your app runs it and returns a short result.
 
-The SDK works with **Android (Java or Kotlin)** and **React Native (Expo)**.
+Supported: **Android (Java or Kotlin)** and **React Native (Expo)**.
 
-## Ask your agent to add them
+## Plan your functions
 
-Pick the few things people ask for most, then tell your coding agent what they are:
+- Cover the most common requests first. A few functions beat dozens.
+- One job per function: *add an item* rather than *manage the list*.
+- Describe each function and argument the way you'd explain it to a person. The assistant chooses from these descriptions.
+- Return a short result: a sentence or a small piece of data.
+- Update the screen when a function changes something, so the person sees it happen.
 
-```text
-Add nowrun app functions so ChatGPT can search my saved recipes and add ingredients to the shopping list.
-```
+## Example
 
-## Plan good functions
-
-- **Start small.** A few functions that cover the most common requests beat dozens that cover everything.
-- **One job each.** *Add an item to the list* is better than *manage the list*.
-- **Describe them clearly.** ChatGPT decides which function to call from your descriptions, so write them the way you'd explain the feature to a person.
-- **Return short results.** A sentence or a small piece of data is enough for ChatGPT to answer.
-- **Keep the screen in sync.** When a function changes something, the user should see it change in the app.
-
-## See it working
-
-Open Drape in ChatGPT and ask it to change the outfit. Drape is a sample app built with the nowrun SDK. See [Get the plugin](/get-the-plugin).
+Drape is a sample app built with the SDK. Open it in the chat and ask it to change the outfit: [Get the plugin](/get-the-plugin).

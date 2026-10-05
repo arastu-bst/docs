@@ -1,41 +1,37 @@
 ---
 title: "FAQ"
 sidebarTitle: "FAQ"
-description: "Common questions about nowrun: the plugin, adding your app, app functions, accounts and pricing."
+description: "Common questions about building for nowrun."
 ---
 
 <AccordionGroup>
 
-<Accordion title="What do I need to build for nowrun?">
-  A nowrun account, an Android build of your app (`.apk`), and ideally a coding agent like Claude Code, Codex or Cursor to run the CLI for you.
+<Accordion title="What do I need?">
+  A nowrun account, an Android `.apk`, and Python 3.8 or later. A coding agent is optional but faster.
 </Accordion>
 
 <Accordion title="Who can see my app?">
-  New apps are private. Only you can see and open your app in ChatGPT.
+  Only you. New apps are private.
 </Accordion>
 
 <Accordion title="Do I need app functions?">
-  No. Every app can be opened in ChatGPT, and ChatGPT can see its screen. App functions let ChatGPT act inside your app, which makes it far more useful in a chat. See [App functions](/sdk/app-functions).
+  No. Every app can be opened and seen. App functions let the assistant act inside your app. See [App functions](/sdk/app-functions).
 </Accordion>
 
 <Accordion title="Do users install anything?">
-  No. Apps run on nowrun and stream into ChatGPT. Nothing is downloaded to the user's device.
+  No. Apps run on nowrun and stream into the chat.
 </Accordion>
 
-<Accordion title="Why do I need to verify a card for the free plan?">
-  The $0 card check prevents spam and abuse. You aren't charged, and you stay on the free plan until you choose to upgrade.
+<Accordion title="Why verify a card for the free plan?">
+  It prevents abuse. The $0 check is not a charge, and you stay on the free plan until you upgrade.
 </Accordion>
 
 <Accordion title="Do I need an API token?">
-  No. Run `nowrun login` and approve the sign-in in your browser.
+  No. `nowrun login` signs you in through the browser.
 </Accordion>
 
-<Accordion title="Can I use the CLI without a coding agent?">
-  Yes. Run `nowrun login`, then `nowrun app create` and `nowrun deploy`. A coding agent just makes it faster.
-</Accordion>
-
-<Accordion title="How do I upgrade my plan?">
-  Sign in at [nowrun.io](https://nowrun.io) and open your plan settings.
+<Accordion title="Can I use the CLI without an agent?">
+  Yes. Follow [Add your app](/quickstart) yourself.
 </Accordion>
 
 </AccordionGroup>

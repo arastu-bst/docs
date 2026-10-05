@@ -1,31 +1,35 @@
 ---
 title: "nowrun deploy"
 sidebarTitle: "nowrun deploy"
-description: "nowrun deploy uploads your Android APK to nowrun so you can open your app in ChatGPT."
+description: "Upload an Android APK to the app linked to this folder."
 ---
 
 ```bash
-nowrun deploy -f app-release.apk --wait
+nowrun deploy -f app.apk --wait
 ```
 
-`nowrun deploy` uploads your build to the app in your current project. It reads the version from the APK, and refuses a build whose package name doesn't match the app.
+Reads the version from the APK. Refuses a build whose package name doesn't match the app.
 
 ## Flags
 
-<ParamField path="-f" type="string">
-  Path to your `.apk`.
+<ParamField path="-f" type="string" required>
+  Path to the `.apk`.
 </ParamField>
 
 <ParamField path="-a" type="string">
-  The app to deploy to. Defaults to the app linked to this project.
+  App to deploy to. Defaults to the app linked to this folder.
 </ParamField>
 
 <ParamField path="--wait" type="boolean">
-  Wait until the build is ready before returning.
+  Block until the build finishes. Without it, the command returns a `submission_id` to check with `nowrun status -s`.
 </ParamField>
 
-For every option, run `nowrun deploy -h`.
+<ParamField path="--timeout" type="number">
+  Seconds to wait with `--wait`. Default 900.
+</ParamField>
 
-## After deploying
+## Result
 
-Each deploy is a new version. Check progress with `nowrun status`, then [open your app in ChatGPT](/deploying/your-first-deploy).
+`job_status` is `success` or `failed`. See [If the deploy fails](/deploying/your-first-deploy#if-the-deploy-fails).
+
+For every flag, run `nowrun deploy -h`.
