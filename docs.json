@@ -18,27 +18,33 @@
         "group": "Get started",
         "pages": [
           "index",
-          "get-the-plugin",
-          "how-it-works"
+          "install-the-plugin",
+          "try-it"
         ]
       },
       {
-        "group": "Add your app",
+        "group": "For developers",
         "pages": [
-          "quickstart",
-          "setup/account",
-          "setup/cli-install",
-          "setup/authentication",
-          "deploying/describe-your-app",
-          "deploying/your-first-deploy",
-          "deploying/supported-engines",
-          "deploying/managing-apps"
-        ]
-      },
-      {
-        "group": "Add app functions",
-        "pages": [
-          "sdk/app-functions"
+          "how-it-works",
+          {
+            "group": "1. Upload your app",
+            "pages": [
+              "quickstart",
+              "setup/account",
+              "setup/cli-install",
+              "setup/authentication",
+              "deploying/describe-your-app",
+              "deploying/your-first-deploy",
+              "deploying/supported-engines",
+              "deploying/managing-apps"
+            ]
+          },
+          {
+            "group": "2. Add app functions",
+            "pages": [
+              "sdk/app-functions"
+            ]
+          }
         ]
       },
       {
@@ -68,8 +74,8 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Get the plugin",
-      "href": "/get-the-plugin"
+      "label": "Install the plugin",
+      "href": "/install-the-plugin"
     }
   },
   "footer": {
@@ -82,11 +88,15 @@
     },
     {
       "source": "/introduction",
-      "destination": "/how-it-works"
+      "destination": "/"
     },
     {
       "source": "/try-the-demo",
-      "destination": "/get-the-plugin"
+      "destination": "/try-it"
+    },
+    {
+      "source": "/get-the-plugin",
+      "destination": "/install-the-plugin"
     }
   ]
 }

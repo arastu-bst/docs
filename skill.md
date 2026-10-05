@@ -62,7 +62,7 @@ It reads the version from the APK and refuses a build whose package does not mat
 
 ## Step 5: tell the human how to open it
 
-New apps are private: only the owner can see and open them. Tell the human to connect the nowrun plugin (**Plugins**, search **nowrun**, tap **+**, sign in), then ask for the app by name in the chat and tap **Open**. Their own app needs no install step. Guide: https://nowrun.io/docs/get-the-plugin
+New apps are private: only the owner can see and open them. Tell the human to connect the nowrun plugin (**Plugins**, search **nowrun**, tap **+**, sign in), then ask for the app by name in the chat and tap **Open**. Their own app needs no install step. Guide: https://nowrun.io/docs/install-the-plugin
 
 ## Step 6 (optional): app functions
 

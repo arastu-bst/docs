@@ -1,28 +1,25 @@
 ---
 title: "nowrun docs"
 sidebarTitle: "Home"
-description: "nowrun runs Android apps inside ChatGPT. Add your app with the nowrun CLI, then add app functions with the nowrun SDK."
+description: "nowrun lets you run apps inside ChatGPT. Install the nowrun plugin, sign in, and open an app in the chat."
 ---
 
-nowrun runs Android apps inside ChatGPT. People open an app in the chat, the assistant can see its screen, and with app functions it can act inside the app for them.
-
-Building for nowrun has two parts:
+nowrun lets you run real apps inside ChatGPT. Open an app in the chat, use it there, and ask the assistant for help with what's on screen. Nothing is installed on your phone or computer.
 
 <CardGroup cols={2}>
-  <Card title="1. Add your app" icon="terminal" href="/quickstart">
-    Put your Android app on nowrun with the nowrun CLI.
+  <Card title="Install the plugin" icon="plug" href="/install-the-plugin">
+    Add nowrun to ChatGPT and sign in. It takes a minute.
   </Card>
-  <Card title="2. Add app functions" icon="bolt" href="/sdk/app-functions">
-    Expose actions with the nowrun SDK so the assistant can run them inside your app.
+  <Card title="Try it" icon="message" href="/try-it">
+    Sample prompts to open an app and use it in the chat.
   </Card>
 </CardGroup>
 
-To open apps, you need the nowrun plugin connected to your ChatGPT account: [Get the plugin](/get-the-plugin).
+## For developers
 
-## For coding agents
+Want to bring your own app, or let the assistant act inside it? There are two parts:
 
-Start with [skill.md](https://nowrun.io/docs/skill.md). It is the complete procedure for adding an app. People can hand their agent this line:
+1. [Upload your app](/quickstart) to nowrun with the nowrun CLI.
+2. [Add app functions](/sdk/app-functions) with the nowrun SDK.
 
-```text
-Enable my app on nowrun using the nowrun CLI. For the full steps, read https://nowrun.io/docs/skill.md
-```
+Coding agents: start with [skill.md](https://nowrun.io/docs/skill.md).
