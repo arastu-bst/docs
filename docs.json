@@ -15,32 +15,34 @@
   "navigation": {
     "groups": [
       {
-        "group": "Get Started",
+        "group": "Get started",
         "pages": [
-          "introduction",
-          "quickstart",
-          "how-it-works",
-          "try-the-demo"
+          "index",
+          "get-the-plugin",
+          "how-it-works"
         ]
       },
       {
-        "group": "Setup",
+        "group": "Add your app",
         "pages": [
+          "quickstart",
           "setup/account",
           "setup/cli-install",
-          "setup/authentication"
-        ]
-      },
-      {
-        "group": "Deploying",
-        "pages": [
+          "setup/authentication",
+          "deploying/describe-your-app",
           "deploying/your-first-deploy",
           "deploying/supported-engines",
           "deploying/managing-apps"
         ]
       },
       {
-        "group": "CLI Reference",
+        "group": "Add app functions",
+        "pages": [
+          "sdk/app-functions"
+        ]
+      },
+      {
+        "group": "CLI reference",
         "pages": [
           "cli/overview",
           "cli/login",
@@ -66,8 +68,8 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Get Started",
-      "href": "https://nowrun.io"
+      "label": "Get the plugin",
+      "href": "/get-the-plugin"
     }
   },
   "footer": {
@@ -77,6 +79,14 @@
     {
       "source": "/cli/init",
       "destination": "/cli/login"
+    },
+    {
+      "source": "/introduction",
+      "destination": "/how-it-works"
+    },
+    {
+      "source": "/try-the-demo",
+      "destination": "/get-the-plugin"
     }
   ]
 }

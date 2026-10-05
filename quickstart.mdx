@@ -1,47 +1,39 @@
 ---
-title: "Quickstart: Deploy an Android APK to a Live Browser URL"
-sidebarTitle: "Quickstart"
-description: "Create your nowrun account, verify your card, and let your AI agent deploy your first Android or HTML5 web app to a live URL in under five minutes."
+title: "Add your app to nowrun"
+sidebarTitle: "Add your app"
+description: "Use the nowrun CLI to add your Android app to nowrun and open it in ChatGPT. Your coding agent does most of the work."
 ---
 
-By the end of this page you will have a nowrun account, an active free plan, and a live browser URL for your Android app — all without running a single command yourself. Your AI agent handles the CLI install, authentication, and deploy the moment you hand it your token.
+You need a nowrun account and an Android build of your app (an `.apk`). Your coding agent can do the rest.
+
+## Hand it to your agent
+
+Give your coding agent this line:
+
+```text
+Enable my app on nowrun using the nowrun CLI. For the full steps, read https://nowrun.io/docs/skill.md
+```
+
+It installs the CLI, signs you in, creates your app and deploys your build. The steps below are what it does, so you know what to expect.
 
 <Steps>
   <Step title="Create your account">
-    Go to [nowrun.io](https://nowrun.io) and sign up for a free account. You only need an email address to get started.
+    Sign up at [nowrun.io](https://nowrun.io) and verify a card. It's a $0 check, with no charge on the free plan.
   </Step>
-  <Step title="Verify your card">
-    Add a payment method in the nowrun dashboard. nowrun runs a **$0 authorization check** — you are not charged. The verification activates your free plan and prevents abuse, which is what keeps the free tier free for everyone.
+  <Step title="Connect the CLI">
+    Your agent runs `pip install nowrun` and `nowrun login`. Your browser opens and you approve the sign-in. That's the only step you do yourself.
   </Step>
-  <Step title="Approve the CLI in your browser">
-    After verification, open the nowrun dashboard and copy your personal API token. You will paste this into your agent in the next step.
+  <Step title="Describe your app">
+    Your agent asks you for a short description, a one-line pitch and a few example requests your app handles. These help ChatGPT understand when your app fits what someone asks. See [Describe your app](/deploying/describe-your-app).
   </Step>
-  <Step title="Tell your agent to deploy">
-    Open your AI coding agent (Claude Code, Codex, Cursor, or any shell-capable agent) and ask it to deploy your app using your nowrun token. When the agent asks for the token, paste it in.
-
-    The agent will run the following commands on your behalf:
-
-    ```bash
-    pip install nowrun
-    nowrun login
-    nowrun deploy
-    ```
-
-    <Note>
-      You do not need to run these commands yourself. The agent executes them as part of its setup and deploy cycle.
-    </Note>
+  <Step title="Deploy your build">
+    Your agent creates the app and deploys your APK, then waits until it's ready.
   </Step>
-  <Step title="Open your link">
-    Once the deploy completes, your agent will share a live URL. Open it in any browser — your app is running instantly, with no install required.
+  <Step title="Open it in ChatGPT">
+    With the [nowrun plugin](/get-the-plugin) connected, ask ChatGPT for your app by name and tap **Open**. Your app is private, so only you can see it.
   </Step>
 </Steps>
 
-<Note>
-  You do not need to give your agent a command cheat sheet. `nowrun login` installs the nowrun skill and MCP server, which teach the agent every available CLI command. The agent uses `nowrun help` and `nowrun <command> -h` to discover what it needs on its own.
-</Note>
+## Next
 
-## Next steps
-
-- [Deploy your first app](/deploying/your-first-deploy) — a deeper walkthrough of the deploy flow.
-- [CLI overview](/cli/overview) — explore every nowrun command available to your agent.
-
+Add app functions so ChatGPT can act inside your app: [Add app functions](/sdk/app-functions).

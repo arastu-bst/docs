@@ -1,90 +1,35 @@
 ---
-title: "Troubleshooting nowrun: CLI, Auth, and Deploy Errors"
+title: "Troubleshooting"
 sidebarTitle: "Troubleshooting"
-description: "Diagnose and fix common problems with nowrun: authentication errors, CLI install failures, Android and HTML5 deploy issues, and agents that can't find the CLI."
+description: "Fixes for common problems with the nowrun CLI, signing in, deploying, and opening your app in ChatGPT."
 ---
-
-This page covers the most common issues when setting up and using nowrun, and how to resolve them.
 
 <AccordionGroup>
 
-<Accordion title="`nowrun: command not found` after install">
-  **Cause:** pip installed the package successfully, but Python's scripts directory isn't on your system `PATH`.
-
-  **Fix:** Run nowrun directly through the Python module to confirm the install succeeded:
-
-  ```bash
-  python -m nowrun --version
-  ```
-
-  If that works, add Python's scripts directory to your `PATH` permanently, or reinstall and verify the install location with:
-
-  ```bash
-  pip show nowrun
-  ```
+<Accordion title="nowrun: command not found after installing">
+  The package installed, but Python's scripts folder isn't on your `PATH`. Run `pip show nowrun` to find where it installed. The `nowrun` command is in the `bin` folder next to the reported location (on macOS system Python, `~/Library/Python/3.x/bin`). Add that folder to your `PATH`, or call the command by its full path.
 </Accordion>
 
-<Accordion title="Python version error during install">
-  **Cause:** Your active Python version is older than 3.8, which nowrun requires.
-
-  **Fix:** Check your current version:
-
-  ```bash
-  python --version
-  ```
-
-  If it's below 3.8, upgrade Python using your system package manager or by downloading the latest release from [python.org](https://python.org). Then re-run the CLI install:
-
-  ```bash
-  pip install nowrun
-  ```
+<Accordion title="nowrun login times out">
+  The sign-in link is valid for about five minutes. Run `nowrun login` again for a fresh one.
 </Accordion>
 
-<Accordion title="`nowrun login` fails or times out">
-  **Cause:** The approval window lapsed. It is about five minutes, and it expires quietly.
-
-  **Fix:** Run it again for a fresh approval link. If no browser opened, use the URL the command prints:
-
-  ```bash
-  nowrun login
-  ```
+<Accordion title="app create says fields are missing">
+  Every app needs a title, package name, category, description, pitch, at least one request (`--intent`), kind, orientation and icon. Run `nowrun validate` to see what's missing. See [Describe your app](/deploying/describe-your-app).
 </Accordion>
 
-<Accordion title="`.aab` file — can't deploy">
-  **Cause:** for Android, nowrun only supports `.apk` files. Android App Bundles (`.aab`) are not supported. (HTML5 games deploy as a `.zip` web bundle instead.)
-
-  **Fix:** Configure your build to output an APK instead of an AAB:
-
-  - **Android Studio:** Go to **Build → Build Bundle(s) / APK(s) → Build APK(s)**.
-  - **Unity:** Open **Android Player Settings** and disable the **Build App Bundle (Google Play)** option before building.
-  - **Other engines:** Check your engine's Android export settings for an option to output `.apk` instead of `.aab`.
+<Accordion title="Deploy is rejected">
+  Check that your build is an `.apk` (not an `.aab`) and that its package name matches your app. `nowrun inspect app.apk` shows the build's package name and version.
 </Accordion>
 
-<Accordion title='Deploy fails — "APK not found" or similar'>
-  **Cause:** The agent can't find the `.apk` file at the expected path, either because the build step didn't complete or the output path differs from what the agent assumed.
-
-  **Fix:** Confirm your build step finished successfully and that the `.apk` was actually generated. Then tell your agent the explicit path to the APK file so it can pass it to `nowrun deploy` directly.
+<Accordion title="My app doesn't show up in ChatGPT">
+  Check that the [nowrun plugin](/get-the-plugin) is connected and that you're signed in to the same nowrun account you deployed with. Then run `nowrun status` to confirm the deploy finished.
 </Accordion>
 
-<Accordion title="Agent says it doesn't know how to deploy / can't find the skill">
-  **Cause:** The nowrun skill and MCP server are installed during `nowrun login`. If login was skipped or failed, the agent won't have access to the nowrun command surface.
-
-  **Fix:** Run `nowrun login` again to re-install the skill and MCP server, then ask your agent to retry the deployment.
-
-  ```bash
-  nowrun login
-  ```
-</Accordion>
-
-<Accordion title="Live URL isn't loading">
-  **Cause:** The deploy may still be processing, or an upload error occurred silently.
-
-  **Fix:** Review the deploy output from your agent for any error messages. If the deploy reported success, wait a moment and refresh the URL. You can also check the [nowrun dashboard](https://nowrun.io) to see the current status of your deployed app.
+<Accordion title="My agent doesn't know how to use nowrun">
+  The nowrun skill is installed by `nowrun login`. Run it again, then ask your agent to retry.
 </Accordion>
 
 </AccordionGroup>
 
-<Note>
-  If you're still stuck, check the nowrun dashboard for status messages, or revisit the CLI output from your agent — it often includes the specific error.
-</Note>
-
+Still stuck? [Contact us](https://nowrun.io/support.html).

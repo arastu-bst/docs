@@ -1,0 +1,42 @@
+---
+title: "Describe your app for ChatGPT"
+sidebarTitle: "Describe your app"
+description: "Every nowrun app has a description, a one-line pitch and example requests. They help ChatGPT understand what your app does."
+---
+
+When your agent creates your app, it needs three things from you:
+
+| Field | What it is | CLI flag |
+| --- | --- | --- |
+| **Description** | One or two sentences on what your app does. | `--description` |
+| **Pitch** | One line on why someone would use it. | `--pitch` |
+| **Requests** | A few things people would ask for that your app handles. Add as many as you need. | `--intent` |
+
+These help ChatGPT understand what your app does and when it fits what someone asks.
+
+## Write requests the way people talk
+
+<CardGroup cols={2}>
+  <Card title="Vague">
+    **Description:** The best cooking app!
+
+    **Pitch:** Cooking made easy
+
+    **Requests:** food, recipes, cooking
+  </Card>
+  <Card title="Clear">
+    **Description:** Save recipes and turn them into a shopping list.
+
+    **Pitch:** Go from recipe to shopping list in one step.
+
+    **Requests:** "What can I make with chicken and rice?" "Add these ingredients to my list"
+  </Card>
+</CardGroup>
+
+## Other fields
+
+The CLI also needs a title, package name, category, kind (`app` or `game`), orientation and icon. Your agent can read the package name and icon from your APK with `--from-apk`, and list the categories with `nowrun app categories`.
+
+To change any of these later, your agent runs `nowrun app update`.
+
+Next: [Deploy and open your app](/deploying/your-first-deploy)

@@ -1,69 +1,29 @@
 ---
-title: "Deploy Your First Android APK to a Live Browser URL"
-sidebarTitle: "First Deploy"
-description: "Walk through deploying an Android APK or an HTML5 web app to a live browser URL using your AI agent and the nowrun CLI. Get a shareable link in minutes."
+title: "Deploy your app and open it in ChatGPT"
+sidebarTitle: "Deploy and open"
+description: "Deploy your Android APK with the nowrun CLI, then open your app in ChatGPT through the nowrun plugin."
 ---
 
-This page walks you through the full deploy process — from installing the CLI to having a live, shareable browser URL. By the end, your app will be running in the cloud and accessible to anyone with the link.
-
-## Before you start
-
-You need a nowrun account with a verified card (a free plan is available at no charge) and Python 3.8 or later on your machine.
-
-### Install the CLI
-
-Install the nowrun CLI from PyPI:
+Once your app is created, your agent deploys your build:
 
 ```bash
-pip install nowrun
+nowrun deploy -f app-release.apk --wait
 ```
 
-### Authenticate and set up the skill
+The CLI reads the version from your APK and refuses a build whose package name doesn't match your app, so you can't deploy to the wrong app by mistake. `--wait` blocks until the build is ready.
 
-Run `nowrun login`. Your browser opens, you approve the device, and the CLI authenticates. This and installs the nowrun skill and MCP server that your AI agent uses:
+## Open it in ChatGPT
 
-```bash
-nowrun login
-```
+1. Make sure the [nowrun plugin](/get-the-plugin) is connected to your ChatGPT account.
+2. Ask ChatGPT for your app by name.
+3. Tap **Open**.
 
-Replace `<your-token>` with the token shown in your nowrun dashboard.
+Your app starts out private, so only you can see and open it. It's already in your container, so there's no **Search and install** step.
 
-<Note>
-  Make sure the following are ready before deploying:
+## Check it works
 
-  - The nowrun CLI is installed and `nowrun login` has completed successfully.
-  - An Android `.apk` file is built and ready on your machine.
-</Note>
+- Ask the requests you wrote in [Describe your app](/deploying/describe-your-app) and see whether ChatGPT reaches for your app.
+- Ask *what do I do now?* with your app open, and check ChatGPT's answer matches what's on screen.
+- If you've added [app functions](/sdk/app-functions), ask for those actions and check they run.
 
-## Tell your agent to deploy
-
-You don't need to memorize any commands. Simply ask your AI agent to deploy the app — it already knows what to do from the nowrun skill installed during `nowrun login`.
-
-**Example prompt:**
-
-> "Deploy my app to nowrun."
-
-The agent will run the deploy command on your behalf:
-
-```bash
-nowrun deploy
-```
-
-The agent discovers the exact flags and options it needs by consulting `nowrun help`. You can run that command yourself at any time to see all available commands, or use `nowrun <command> -h` for help on a specific command.
-
-## Get your link
-
-When the deploy finishes, the agent shares a live URL with you. That URL opens directly in any browser and streams your Android app — no installation, no app store, nothing to download. You can share it with testers, clients, or anyone you choose.
-
-## Viewing in the dashboard
-
-Log in at [nowrun.io](https://nowrun.io) to see all your deployed apps in one place. The dashboard shows each app's live URL, version history, and current status.
-
-<Tip>
-  The first deploy may take a moment while nowrun provisions your app. Subsequent deploys are faster.
-</Tip>
-
----
-
-Now that your app is live, see [Managing Apps](/deploying/managing-apps) to learn how to update, share, and manage your deployments from the dashboard.
-
+Next: [Managing your app](/deploying/managing-apps)

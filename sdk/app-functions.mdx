@@ -1,0 +1,42 @@
+---
+title: "Add app functions with the nowrun SDK"
+sidebarTitle: "App functions"
+description: "App functions let ChatGPT act inside your app. Add them with the nowrun SDK for Android (Java or Kotlin) and React Native (Expo)."
+---
+
+App functions let ChatGPT act inside your app. Without them, ChatGPT can see your app's screen and tell people where to tap. With them, it can do the thing for them.
+
+For example, in a recipe app, someone could ask *add these ingredients to my shopping list*, and ChatGPT calls your app's function to do it.
+
+<Info>
+  The full nowrun SDK guide and sample apps are coming to GitHub soon. This page covers what app functions are and how to plan them.
+</Info>
+
+## How it works
+
+1. You add the nowrun SDK to your app and describe each function in plain words.
+2. When your app opens in ChatGPT, it tells nowrun which functions it has.
+3. ChatGPT reads those descriptions and calls the right function when someone asks for it.
+4. Your app runs the function and returns a short result, which ChatGPT uses in its reply.
+
+The SDK works with **Android (Java or Kotlin)** and **React Native (Expo)**.
+
+## Ask your agent to add them
+
+Pick the few things people ask for most, then tell your coding agent what they are:
+
+```text
+Add nowrun app functions so ChatGPT can search my saved recipes and add ingredients to the shopping list.
+```
+
+## Plan good functions
+
+- **Start small.** A few functions that cover the most common requests beat dozens that cover everything.
+- **One job each.** *Add an item to the list* is better than *manage the list*.
+- **Describe them clearly.** ChatGPT decides which function to call from your descriptions, so write them the way you'd explain the feature to a person.
+- **Return short results.** A sentence or a small piece of data is enough for ChatGPT to answer.
+- **Keep the screen in sync.** When a function changes something, the user should see it change in the app.
+
+## See it working
+
+Open Drape in ChatGPT and ask it to change the outfit. Drape is a sample app built with the nowrun SDK. See [Get the plugin](/get-the-plugin).

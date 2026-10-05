@@ -1,65 +1,37 @@
 ---
-title: "nowrun login: Authenticate the CLI Without a Token"
+title: "nowrun login"
 sidebarTitle: "nowrun login"
-description: "nowrun login authenticates the CLI through your browser and installs the nowrun skill and MCP server. No token to copy or paste."
+description: "nowrun login signs the CLI in through your browser and installs the nowrun skill and docs MCP server for your coding agent."
 ---
 
-`nowrun login` is the first command to run after installing the CLI. It authenticates through your browser and sets up the skill and MCP server that give your AI agent a complete interface to nowrun.
-
-## Usage
-
 ```bash
 nowrun login
 ```
 
-## What happens
+1. The CLI prints a sign-in link and opens your browser.
+2. You approve it while logged in to nowrun.
+3. The CLI saves the session on this machine.
+4. It installs the nowrun skill and docs MCP server for your coding agent.
 
-1. The CLI prints an approval URL and opens it in your browser.
-2. You approve the device in the nowrun console while signed in to your account.
-3. The CLI receives the credentials and saves them locally.
-4. It installs the nowrun skill and the docs MCP server for your AI tool.
+There's no token to copy. The link is valid for about five minutes. If it expires, run `nowrun login` again.
 
-There is no token to find, copy, or paste. The browser approval is the whole human step.
+## For AI agents
 
-<Note>
-  The approval window is about five minutes. If it lapses, the CLI reports a timeout and you simply run `nowrun login` again for a fresh code.
-</Note>
-
-## If you are an AI agent
-
-`nowrun login` cannot be completed by the agent alone, because a human has to approve the device. Run the command, then **show the printed URL to the user and wait**. The command blocks until approval or timeout.
-
-```bash
-nowrun login
-# Opening your browser to log in to nowrun…
-# If it doesn't open, visit:
-#   https://nowrun.io/console/cli-login?code=XXXXXXXX
-# Waiting for you to approve this device in the browser…
-```
-
-Once it returns, `nowrun whoami` confirms the session.
+You can't finish `nowrun login` alone, because a person has to approve it. Run the command, **show the link to the user and wait**. The command returns once they approve.
 
 ## Flags
 
-<ParamField path="--target" name="--target <tool>" type="string">
-  Which AI tool to install the skill and MCP server for: `claude` (default), `agents`, `codex`, `copilot`, `cursor`, or `vscode`.
+<ParamField path="--target" type="string">
+  Which coding tool to set up: `claude` (default), `agents`, `codex`, `copilot`, `cursor` or `vscode`.
 </ParamField>
 
-<ParamField path="-d" name="-d, --dir <path>" type="string">
-  Project root for the agent setup. Defaults to the current directory, so run this from your project rather than your home folder.
+<ParamField path="-d" type="string">
+  Project folder to set up the agent in. Defaults to the current folder, so run it from your project.
 </ParamField>
 
-## Checking and ending a session
+## Related
 
 ```bash
-nowrun whoami    # shows the signed-in account, and validates it against the backend
-nowrun logout    # signs out and deletes stored credentials from this machine
+nowrun whoami    # who is signed in
+nowrun logout    # sign out on this machine
 ```
-
-`whoami` verifies the session server-side, so it reports a revoked or expired session rather than only checking local state.
-
-## Re-authenticating
-
-Run `nowrun login` again at any time. It is safe to re-run and overwrites any stored credentials.
-
-On a machine with no browser, open the printed approval URL on your phone or another computer. Approving there completes the login on this machine.

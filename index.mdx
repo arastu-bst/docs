@@ -1,44 +1,36 @@
 ---
-title: "nowrun: Deploy Android Apps to Any Browser Instantly"
+title: "nowrun docs: put your app inside ChatGPT"
 sidebarTitle: "Home"
-description: "nowrun lets your AI coding agent deploy Android apps and HTML5 web apps to a live browser URL in minutes. No installs for viewers, just share a link."
+description: "nowrun runs your Android app inside ChatGPT. Add your app with the nowrun CLI, then add app functions with the nowrun SDK so ChatGPT can act inside it."
 ---
 
-nowrun deploys Android apps to live, browser-accessible URLs — no install required for anyone viewing your app. Your AI coding agent (Claude Code, Codex, Cursor, or any other) does the heavy lifting: it installs the CLI, authenticates with your token, and runs the deploy. You just create an account and share the link.
+nowrun runs your Android app inside ChatGPT. People open it right in the chat, and ChatGPT can see the screen and help them use it. Add app functions with the nowrun SDK and ChatGPT can act inside your app for them.
+
+There are two parts to building for nowrun:
 
 <CardGroup cols={2}>
-  <Card title="Introduction" icon="rocket" href="/introduction">
-    Learn what nowrun is, how it works, and what engines it supports.
+  <Card title="1. Add your app" icon="terminal" href="/quickstart">
+    Use the nowrun CLI to put your Android app on nowrun. Your coding agent does most of the work.
   </Card>
-
-  <Card title="Quick Start" icon="bolt" href="/quickstart">
-    Get from zero to a live URL in minutes.
-  </Card>
-
-  <Card title="Your First Deploy" icon="android" href="/deploying/your-first-deploy">
-    Step-by-step walkthrough of deploying your first app.
-  </Card>
-
-  <Card title="CLI Reference" icon="terminal" href="/cli/overview">
-    Every command your agent needs: login, deploy, help, and more.
+  <Card title="2. Add app functions" icon="bolt" href="/sdk/app-functions">
+    Use the nowrun SDK to expose the actions people ask for most, so ChatGPT can do them inside your app.
   </Card>
 </CardGroup>
 
-## How it works
+## Start with the plugin
 
-<Steps>
-  <Step title="Create your account">
-    Sign up at [nowrun.io](https://nowrun.io) to get started. It only takes a moment.
-  </Step>
-  <Step title="Verify your card (free)">
-    Activate your free plan with a \$0 card verification — this is not a charge.
-  </Step>
-  <Step title="Approve the device in your browser">
-    Copy your API token from the dashboard and hand it to your AI coding agent.
-  </Step>
-  <Step title="Ask your agent to deploy">
-    Tell your agent to deploy. It runs `nowrun login`, you approve the device in your browser, then it deploys and hands you a live URL to share.
-  </Step>
-</Steps>
+To see your app in ChatGPT, you need the nowrun plugin connected to your ChatGPT account. It takes a minute, and it's the best way to see what nowrun does before you build.
 
-Head to the [Introduction](/introduction) for a deeper look at nowrun's capabilities and supported engines.
+<Card title="Get the nowrun plugin" icon="plug" href="/get-the-plugin">
+  Connect nowrun to ChatGPT and try an app in the chat.
+</Card>
+
+## The fastest way to start
+
+Give your coding agent (Claude Code, Codex, Cursor or similar) this line:
+
+```text
+Enable my app on nowrun using the nowrun CLI. For the full steps, read https://nowrun.io/docs/skill.md
+```
+
+It installs the CLI, signs you in and adds your app. You approve the sign-in in your browser.

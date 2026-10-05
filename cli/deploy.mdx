@@ -1,52 +1,31 @@
 ---
-title: "nowrun deploy: Publish Your Build to a Live URL"
+title: "nowrun deploy"
 sidebarTitle: "nowrun deploy"
-description: "nowrun deploy uploads your Android APK or HTML5 bundle and streams it at a browser-accessible URL that anyone can open without installing anything on their device."
+description: "nowrun deploy uploads your Android APK to nowrun so you can open your app in ChatGPT."
 ---
 
-`nowrun deploy` is the command that publishes your APK or web bundle to nowrun and returns a live URL. It takes an Android `.apk` or an HTML5 `.zip` web bundle. Your AI agent runs this after building, no Android device, emulator, or app store required on the recipient's end.
-
-## Usage
-
 ```bash
-nowrun deploy
+nowrun deploy -f app-release.apk --wait
 ```
 
-The agent discovers exact flags and options from `nowrun deploy -h` and the nowrun skill. The base command is `nowrun deploy`.
+`nowrun deploy` uploads your build to the app in your current project. It reads the version from the APK, and refuses a build whose package name doesn't match the app.
 
-## Prerequisites
+## Flags
 
-<Note>
-  Before running `nowrun deploy`, make sure you have:
-  - The nowrun CLI installed (`pip install nowrun`)
-  - Completed `nowrun login` successfully so your credentials are saved
-  - A build ready to upload: an Android `.apk`, or a `.zip` web bundle for HTML5
-</Note>
+<ParamField path="-f" type="string">
+  Path to your `.apk`.
+</ParamField>
 
-## What it does
+<ParamField path="-a" type="string">
+  The app to deploy to. Defaults to the app linked to this project.
+</ParamField>
 
-When your agent runs `nowrun deploy`, it:
+<ParamField path="--wait" type="boolean">
+  Wait until the build is ready before returning.
+</ParamField>
 
-1. Locates the APK or web bundle (the agent specifies the path with `-f`).
-2. Uploads it to nowrun.
-3. nowrun streams the app at a unique, browser-accessible URL.
-4. Returns the live URL, share it with anyone, no installation needed.
+For every option, run `nowrun deploy -h`.
 
-## Exploring options
+## After deploying
 
-Because the CLI is agent-driven and evolves over time, use the built-in help to discover all current flags and options:
-
-```bash
-nowrun deploy -h
-```
-
-Your agent runs this automatically via the MCP server and skill to stay up to date with the latest available options.
-
-<Tip>
-  Each deploy creates a new version. Your previous live URL stays active until you explicitly remove it or the app is deleted.
-</Tip>
-
-## Managing deployed apps
-
-After deploying, you can manage your live apps — including viewing, updating, and removing them. See [Managing Apps](/deploying/managing-apps) for details.
-
+Each deploy is a new version. Check progress with `nowrun status`, then [open your app in ChatGPT](/deploying/your-first-deploy).
