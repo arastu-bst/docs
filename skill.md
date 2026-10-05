@@ -66,7 +66,7 @@ New apps are private: only the owner can see and open them. Tell the human to co
 
 ## Step 6 (optional): app functions
 
-If the human wants the assistant to act inside the app, it needs app functions from the nowrun SDK. The SDK guide is not published yet: read https://nowrun.io/docs/sdk/app-functions, and do not guess the SDK's API.
+If the human wants the assistant to act inside the app, it needs app functions from the nowrun SDK. Read https://nowrun.io/docs/sdk/app-functions.
 
 ## Getting help from the CLI
 
