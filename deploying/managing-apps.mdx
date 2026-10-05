@@ -1,46 +1,23 @@
 ---
-title: "Manage Your Deployed Android Apps in the nowrun Dashboard"
-sidebarTitle: "Managing Apps"
-description: "View, update, and share your deployed Android apps from the nowrun dashboard. Manage live links, version history, and your plan in one place."
+title: "Manage your app"
+sidebarTitle: "Managing your app"
+description: "Deploy new versions, check status, change details or delete an app with the nowrun CLI."
 ---
 
-After deploying, the nowrun dashboard at [nowrun.io](https://nowrun.io) is where you manage everything — apps, live links, version history, and your plan. Everything your agent deploys shows up here automatically.
+| To | Run |
+| --- | --- |
+| Deploy a new version | `nowrun deploy -f app.apk --wait` |
+| See what's live and in progress | `nowrun status` |
+| Check one deploy | `nowrun status -s <submission_id>` |
+| Cancel a deploy in progress | `nowrun cancel` |
+| List your apps | `nowrun app list` |
+| Show one app, its visibility and readiness | `nowrun app show` |
+| Check for missing fields | `nowrun validate` |
+| Change details | `nowrun app update` |
+| Change the icon | `nowrun app set-icon icon.png` |
+| Link this folder to an app | `nowrun use <app_id>` |
+| Delete an app (permanent) | `nowrun app delete` |
 
-## Dashboard overview
+Commands use the app linked to the current folder. Pass `-a <app_id>` to target another.
 
-<CardGroup cols={2}>
-  <Card icon="link" title="Live Links">
-    Each app gets a unique URL the moment it's deployed. Share it with anyone — it opens in any browser with no installation required.
-  </Card>
-  <Card icon="clock-rotate-left" title="Version History">
-    Every deploy creates a new version of your app. You can view previous versions and track what has changed over time.
-  </Card>
-  <Card icon="gear" title="App Settings">
-    Update your app's name and configuration directly from the dashboard whenever you need to make changes.
-  </Card>
-  <Card icon="credit-card" title="Plan & Billing">
-    Upgrade your plan or manage your billing details from one place. nowrun's free plan is available with a $0 card verification.
-  </Card>
-</CardGroup>
-
-## Sharing your app
-
-The live URL your agent provides after a deploy can be shared directly with anyone. Viewers don't need a nowrun account, a specific device, or anything installed — just a browser. Copy the link and send it to testers, clients, or collaborators.
-
-## Updating your app
-
-To deploy a new version, simply ask your agent to deploy again:
-
-```bash
-nowrun deploy
-```
-
-nowrun creates a new version while keeping the existing URL live. Your audience can continue using the current version without any interruption as the new one is pushed.
-
-## Deleting an app
-
-You can delete an app at any time from the dashboard. Deleting an app permanently removes its live URL and all associated versions. This action cannot be undone, so make sure you no longer need the app before proceeding.
-
-<Note>
-  Your live link stays active as long as your account is in good standing. Upgrading your plan may extend availability and add features.
-</Note>
+New apps are private: only the owner can see and open them.

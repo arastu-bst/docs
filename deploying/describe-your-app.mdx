@@ -1,0 +1,42 @@
+---
+title: "Describe your app"
+sidebarTitle: "Describe your app"
+description: "The listing fields every nowrun app needs, with flags, limits and allowed values."
+---
+
+Every app needs these fields. `nowrun app create` refuses to run until they are all set.
+
+| Field | Flag | Rule |
+| --- | --- | --- |
+| Title | `--title` | Required |
+| Package name | `-p` | Required. `--from-apk` reads it from the build. |
+| Category | `--category` | One of `nowrun app categories` |
+| Description | `--description` | What the app does. Up to 500 characters. |
+| Pitch | `--pitch` | Why someone would use it. One line, up to 200 characters. |
+| Requests | `--intent` | At least one. Repeat the flag for each. |
+| Kind | `--kind` | `app` or `game` |
+| Orientation | `--orientation` | `portrait` or `landscape` |
+| Icon | `--icon` | Square PNG, JPEG or WebP, at least 192 px, up to 1 MB. `--from-apk` reads it from the build. |
+
+To pass the fields as a file instead, use `--data app.json`.
+
+## Description, pitch and requests
+
+These help the assistant understand what your app does and when it fits a request.
+
+- Get them from the app's owner. Don't invent claims.
+- Write requests the way a person would ask, not as keywords.
+
+| | Vague | Clear |
+| --- | --- | --- |
+| Description | The best cooking app! | Save recipes and turn them into a shopping list. |
+| Pitch | Cooking made easy | Go from recipe to shopping list in one step. |
+| Requests | food, recipes, cooking | "What can I make with chicken and rice?" "Add these ingredients to my list" |
+
+## Change them later
+
+```bash
+nowrun app update --pitch "New pitch"
+```
+
+`nowrun validate` lists anything missing.

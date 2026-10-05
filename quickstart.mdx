@@ -1,47 +1,64 @@
 ---
-title: "Quickstart: Deploy an Android APK to a Live Browser URL"
-sidebarTitle: "Quickstart"
-description: "Create your nowrun account, verify your card, and let your AI agent deploy your first Android or HTML5 web app to a live URL in under five minutes."
+title: "Upload your app"
+sidebarTitle: "Upload your app"
+description: "The complete procedure for uploading an Android app to nowrun with the CLI and opening it in ChatGPT: account, sign-in, listing, deploy, open."
 ---
 
-By the end of this page you will have a nowrun account, an active free plan, and a live browser URL for your Android app — all without running a single command yourself. Your AI agent handles the CLI install, authentication, and deploy the moment you hand it your token.
+This is the full procedure. Each step says who does it.
 
-<Steps>
-  <Step title="Create your account">
-    Go to [nowrun.io](https://nowrun.io) and sign up for a free account. You only need an email address to get started.
-  </Step>
-  <Step title="Verify your card">
-    Add a payment method in the nowrun dashboard. nowrun runs a **$0 authorization check** — you are not charged. The verification activates your free plan and prevents abuse, which is what keeps the free tier free for everyone.
-  </Step>
-  <Step title="Approve the CLI in your browser">
-    After verification, open the nowrun dashboard and copy your personal API token. You will paste this into your agent in the next step.
-  </Step>
-  <Step title="Tell your agent to deploy">
-    Open your AI coding agent (Claude Code, Codex, Cursor, or any shell-capable agent) and ask it to deploy your app using your nowrun token. When the agent asks for the token, paste it in.
+**You need:** an Android `.apk` and Python 3.8 or later. People can hand all of this to a coding agent:
 
-    The agent will run the following commands on your behalf:
+```text
+Enable my app on nowrun using the nowrun CLI. For the full steps, read https://nowrun.io/docs/skill.md
+```
 
-    ```bash
-    pip install nowrun
-    nowrun login
-    nowrun deploy
-    ```
+## 1. Create an account (human)
 
-    <Note>
-      You do not need to run these commands yourself. The agent executes them as part of its setup and deploy cycle.
-    </Note>
-  </Step>
-  <Step title="Open your link">
-    Once the deploy completes, your agent will share a live URL. Open it in any browser — your app is running instantly, with no install required.
-  </Step>
-</Steps>
+Sign up at [nowrun.io](https://nowrun.io) and verify a card. It is a $0 check, not a charge.
 
-<Note>
-  You do not need to give your agent a command cheat sheet. `nowrun login` installs the nowrun skill and MCP server, which teach the agent every available CLI command. The agent uses `nowrun help` and `nowrun <command> -h` to discover what it needs on its own.
-</Note>
+## 2. Install and sign in (agent, then human)
 
-## Next steps
+```bash
+pip install nowrun
+nowrun login
+```
 
-- [Deploy your first app](/deploying/your-first-deploy) — a deeper walkthrough of the deploy flow.
-- [CLI overview](/cli/overview) — explore every nowrun command available to your agent.
+`nowrun login` prints a sign-in link and opens a browser. The human approves it. The link is valid for about five minutes.
 
+**Done when:** `nowrun whoami` shows the account.
+
+## 3. Collect the listing (human answers, agent records)
+
+Ask the human for a description, a one-line pitch and two to four example requests. Do not invent them. Rules and limits: [Describe your app](/deploying/describe-your-app).
+
+## 4. Create the app (agent)
+
+```bash
+nowrun app create --from-apk app.apk \
+  --title "Recipe Box" --category "<from nowrun app categories>" \
+  --description "Save recipes and turn them into a shopping list." \
+  --pitch "Go from recipe to shopping list in one step." \
+  --intent "What can I make with chicken and rice?" \
+  --intent "Add these ingredients to my list" \
+  --kind app --orientation portrait
+```
+
+`--from-apk` reads the package name and icon from the build. Run `nowrun app categories` for the category list. The new app is linked to the current folder, so later commands don't need `-a`.
+
+**Done when:** the command returns an `app_id`. If fields are missing, it lists them.
+
+## 5. Deploy (agent)
+
+```bash
+nowrun deploy -f app.apk --wait
+```
+
+**Done when:** `job_status` is `success`. If it is `failed`, see [Deploy and open](/deploying/your-first-deploy#if-the-deploy-fails).
+
+## 6. Open it (human)
+
+With the [nowrun plugin](/install-the-plugin) connected, the human asks for the app by name in ChatGPT and taps **Open**. The app is private to them and needs no install step.
+
+## Next
+
+[Add app functions](/sdk/app-functions) so the assistant can act inside the app.

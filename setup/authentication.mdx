@@ -1,50 +1,32 @@
 ---
-title: "nowrun CLI Authentication: Sign In From Your Browser"
-sidebarTitle: "Authentication"
-description: "Run nowrun login to authenticate the CLI through your browser, with no token to copy. It also installs the nowrun skill and MCP server so your agent can deploy immediately."
+title: "Sign in to the nowrun CLI"
+sidebarTitle: "Sign in"
+description: "Run nowrun login to sign the CLI in through your browser. It also sets up your coding agent with the nowrun skill and docs MCP server."
 ---
-
-Authentication links the CLI to your nowrun account. Running `nowrun login` does double duty: it signs the CLI in **and** installs the nowrun skill and MCP server, so your AI agent can self-discover every available command from that point on.
-
-## Run `nowrun login`
 
 ```bash
 nowrun login
 ```
 
-The CLI prints an approval URL and opens your browser. Approve the device while signed in to your nowrun account, and the CLI picks up the session automatically.
+The CLI opens your browser. Approve the sign-in while logged in to your nowrun account, and the CLI picks it up. There's no token to copy.
 
-There is no token to find or paste. Approving in the browser is the entire step.
+`nowrun login` also installs the nowrun skill and the docs MCP server for your coding agent, so it knows how to use nowrun from then on.
 
-<Note>
-  The approval window is about five minutes. If it lapses you get a clear timeout, and running `nowrun login` again issues a fresh code.
-</Note>
+## If your agent runs it
 
-## What it sets up
-
-1. **Authenticates** the CLI with your account, so deploys are attributed to you.
-2. **Installs the nowrun skill and MCP server**, which teach your agent the full command surface and how to use it.
-
-## If your agent is running this
-
-The agent cannot approve the device for you. It will run `nowrun login`, show you the URL, and wait until you approve. Once you do, it continues on its own.
-
-## Check the session
-
-```bash
-nowrun whoami
-```
-
-This validates against the backend rather than only checking local state, so it tells you when a session has been revoked or has expired instead of reporting a stale one as healthy.
-
-## Re-authenticating and signing out
-
-`nowrun login` is safe to re-run at any point, on a new machine or after a fresh install. `nowrun logout` signs out and deletes the stored credentials.
+Your agent can't approve the sign-in for you. It runs `nowrun login`, shows you the link and waits. Once you approve, it carries on. The link is valid for about five minutes. If it expires, run `nowrun login` again.
 
 ## No browser on this machine?
 
-`nowrun login` prints the approval URL before it tries to open anything. On a server, a container, or over SSH, open that URL on your phone or another computer and approve there. The waiting command picks the session up as soon as you do.
+`nowrun login` prints the link before it opens anything. On a server or over SSH, open the link on your phone or another computer and approve it there.
 
----
+## Check or end your session
 
-Next: [Deploy your first app](/deploying/your-first-deploy)
+```bash
+nowrun whoami    # who is signed in
+nowrun logout    # sign out on this machine
+```
+
+You stay signed in for 30 days after you last use the CLI.
+
+Next: [Describe your app](/deploying/describe-your-app)

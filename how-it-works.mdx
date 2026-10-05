@@ -1,48 +1,26 @@
 ---
-title: "How nowrun Works: Deploy Pipeline and Agent Skill"
-sidebarTitle: "How It Works"
-description: "Learn how nowrun streams Android and HTML5 builds to browser URLs, how the AI agent skill and MCP server work, and what happens from deploy to live link."
+title: "How nowrun works"
+sidebarTitle: "How it works"
+description: "The nowrun plugin, your nowrun container, the CLI, and app functions from the nowrun SDK."
 ---
 
-When your agent runs `nowrun deploy`, your APK travels through a pipeline that ends at a unique, shareable URL. Anyone who opens that URL sees your app running live in their browser — no download, no install, no app store. Here is what happens at each stage, and how the agent skill and MCP server fit into the picture.
+nowrun runs Android apps in the cloud and streams them into ChatGPT through the nowrun plugin. Nothing is installed on the user's device.
 
-## The deploy pipeline
+| Piece | What it does |
+| --- | --- |
+| **nowrun plugin** | Connects a ChatGPT account to nowrun. Each person adds it once. |
+| **nowrun container** | Where a person's apps run. It starts empty and they choose what goes in it. |
+| **nowrun CLI** | Adds your app to nowrun. Your coding agent runs it. |
+| **nowrun SDK** | Adds app functions to your app. |
 
-1. **Your agent builds the APK.** Your AI agent compiles your project using whatever engine you are working with, such as native Android, Unity, Godot, or Unreal. The output is a standard `.apk` file, or a `.zip` web bundle for an HTML5 web app.
-2. **The agent runs the deploy command.** Using the nowrun skill it learned during `nowrun login`, the agent calls the appropriate `nowrun` command to start the upload.
-3. **The CLI uploads the APK to nowrun.** The nowrun CLI packages the APK or web bundle and sends it to the nowrun platform over a secure connection.
-4. **nowrun streams the app at a unique URL.** The platform processes the APK or web bundle and exposes it at a unique, browser-accessible URL tied to your account and version.
-5. **Anyone with the link opens it in a browser.** No install required — users click the link and your app runs immediately, on any device with a modern browser.
+## What the assistant can do with your app
 
-## The nowrun skill and MCP server
+| Level | What it means | What you need |
+| --- | --- | --- |
+| **Open** | Someone asks for your app by name and it opens in the chat. | Your app on nowrun |
+| **See** | The assistant reads the screen and tells the person where to tap. | Nothing extra |
+| **Act** | The assistant runs actions inside your app, like adding an item to a list. | App functions |
 
-Running `nowrun login` does two things beyond authenticating your CLI:
+## Visibility
 
-- **Installs the nowrun skill** — a structured set of instructions that teaches your AI agent every command the nowrun CLI exposes, along with when and how to use each one.
-- **Installs the MCP server** — a local server that gives your agent a programmatic, structured interface to nowrun, so it can query state, trigger deploys, and retrieve links without relying on raw shell output alone.
-
-Because of the skill and MCP server, the agent can discover commands on its own using `nowrun help` and `nowrun <command> -h`. You do not need to provide a command cheat sheet or guide the agent step by step — it figures out what to run based on the task you give it.
-
-## AI agent compatibility
-
-nowrun works with any AI coding agent that can execute shell commands, including Claude Code, Codex, and Cursor. On the engine side, any toolchain that produces a standard APK is supported: native Android, Unity, Godot, and Unreal Engine. HTML5 web games are also supported, packaged as a `.zip` bundle and created with `nowrun app create --type h5`.
-
-<Warning>
-  For Android, nowrun deploys `.apk` files only. Android App Bundle (`.aab`) format is not supported. Make sure your build configuration outputs a standard APK before running `nowrun deploy`.
-</Warning>
-
-<Tip>
-  You never need to install or run anything yourself. The agent handles the full install-authenticate-deploy cycle — your only job is the one-time account setup and token handoff.
-</Tip>
-
-## Next steps
-
-<CardGroup cols={2}>
-  <Card title="Account setup" href="setup/account">
-    Create your account and activate your free plan with a $0 card verification.
-  </Card>
-  <Card title="Your first deploy" href="deploying/your-first-deploy">
-    Walk through a complete deploy from APK to live browser URL.
-  </Card>
-</CardGroup>
-
+New apps are private. Only the owner can see and open them. Your own app is already in your container, so it opens without an install step.

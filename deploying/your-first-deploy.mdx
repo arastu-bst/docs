@@ -1,69 +1,47 @@
 ---
-title: "Deploy Your First Android APK to a Live Browser URL"
-sidebarTitle: "First Deploy"
-description: "Walk through deploying an Android APK or an HTML5 web app to a live browser URL using your AI agent and the nowrun CLI. Get a shareable link in minutes."
+title: "Deploy and open your app"
+sidebarTitle: "Deploy and open"
+description: "Deploy an Android APK with nowrun deploy, check the result, and open the app."
 ---
 
-This page walks you through the full deploy process — from installing the CLI to having a live, shareable browser URL. By the end, your app will be running in the cloud and accessible to anyone with the link.
-
-## Before you start
-
-You need a nowrun account with a verified card (a free plan is available at no charge) and Python 3.8 or later on your machine.
-
-### Install the CLI
-
-Install the nowrun CLI from PyPI:
+## Deploy
 
 ```bash
-pip install nowrun
+nowrun deploy -f app.apk --wait
 ```
 
-### Authenticate and set up the skill
+The CLI reads the version from the APK and refuses a build whose package name doesn't match the app.
 
-Run `nowrun login`. Your browser opens, you approve the device, and the CLI authenticates. This and installs the nowrun skill and MCP server that your AI agent uses:
+With `--json`, the result is:
 
-```bash
-nowrun login
+```json
+{"ok": true, "data": {"submission_id": "…", "job_status": "success", "app_testing_url": "…"}}
 ```
 
-Replace `<your-token>` with the token shown in your nowrun dashboard.
+**Done when:** `job_status` is `success`.
 
-<Note>
-  Make sure the following are ready before deploying:
+## If the deploy fails
 
-  - The nowrun CLI is installed and `nowrun login` has completed successfully.
-  - An Android `.apk` file is built and ready on your machine.
-</Note>
+| Symptom | Do this |
+| --- | --- |
+| `job_status` is `failed` | Read the error message, fix the build, deploy again. |
+| Fields missing | Run `nowrun validate` and set what it lists with `nowrun app update`. |
+| Package mismatch | Run `nowrun inspect app.apk` and check the package name matches the app. |
+| `.aab` file | Rebuild as `.apk`. See [Supported builds](/deploying/supported-engines). |
+| Not signed in | Run `nowrun login` and have the human approve it. |
 
-## Tell your agent to deploy
+Don't redeploy while a deploy is in progress. Check with `nowrun status`.
 
-You don't need to memorize any commands. Simply ask your AI agent to deploy the app — it already knows what to do from the nowrun skill installed during `nowrun login`.
+## Open the app (human)
 
-**Example prompt:**
+1. Connect the [nowrun plugin](/install-the-plugin) in ChatGPT, if not done already.
+2. Ask for the app by name.
+3. Tap **Open**.
 
-> "Deploy my app to nowrun."
+The app is private to its owner and is already in their container, so there is no **Search and install** step.
 
-The agent will run the deploy command on your behalf:
+## Check it works
 
-```bash
-nowrun deploy
-```
-
-The agent discovers the exact flags and options it needs by consulting `nowrun help`. You can run that command yourself at any time to see all available commands, or use `nowrun <command> -h` for help on a specific command.
-
-## Get your link
-
-When the deploy finishes, the agent shares a live URL with you. That URL opens directly in any browser and streams your Android app — no installation, no app store, nothing to download. You can share it with testers, clients, or anyone you choose.
-
-## Viewing in the dashboard
-
-Log in at [nowrun.io](https://nowrun.io) to see all your deployed apps in one place. The dashboard shows each app's live URL, version history, and current status.
-
-<Tip>
-  The first deploy may take a moment while nowrun provisions your app. Subsequent deploys are faster.
-</Tip>
-
----
-
-Now that your app is live, see [Managing Apps](/deploying/managing-apps) to learn how to update, share, and manage your deployments from the dashboard.
-
+- Ask one of the app's requests and check the app is chosen.
+- With the app open, ask `What do I do now?` and check the answer matches the screen.
+- If the app has [app functions](/sdk/app-functions), ask for those actions and check they run.

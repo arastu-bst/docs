@@ -1,62 +1,45 @@
 ---
-title: "nowrun CLI Reference: Commands, Skill, and MCP Server"
+title: "nowrun CLI reference"
 sidebarTitle: "Overview"
-description: "The nowrun CLI lets your AI agent install, authenticate, and deploy Android and HTML5 apps to live browser URLs. Learn how it is structured and how to explore it."
+description: "Every nowrun CLI command, the JSON output format and exit codes."
 ---
 
-The nowrun CLI is the engine behind every deploy. It's designed to be run by an AI agent, which discovers the full command surface from the built-in skill and MCP server — so your agent always knows exactly what to do and how to do it.
-
-## Installation
-
-Your agent installs the CLI with a single command:
-
 ```bash
-pip install nowrun
+nowrun help            # every command and the workflow
+nowrun <command> -h    # one command's flags
 ```
 
-Python 3.8 or higher is required.
+These ship with the CLI, so they always match the installed version.
 
-## Exploring commands
+## Output for scripts and agents
 
-To see every available command, run:
+Add `--json` to any command, in any position.
 
-```bash
-nowrun help
-```
+| Result | Output | Exit code |
+| --- | --- | --- |
+| Success | `{"ok": true, "data": {...}}` | 0 |
+| Error | `{"ok": false, "error": {...}}` | 1 |
 
-To get detailed help for a specific command, run:
+## Commands
 
-```bash
-nowrun <command> -h
-```
+| Command | What it does |
+| --- | --- |
+| `nowrun login` | Sign in through the browser and set up the agent skill and docs MCP |
+| `nowrun whoami` | Show who is signed in |
+| `nowrun logout` | Sign out on this machine |
+| `nowrun update` | Update the CLI, skill and docs MCP server |
+| `nowrun app create` | Create an app with its listing |
+| `nowrun app categories` | List valid categories |
+| `nowrun app update` | Change an app's details |
+| `nowrun app set-icon` | Change an app's icon |
+| `nowrun app list` | List your apps |
+| `nowrun app show` | Show one app, its visibility and readiness |
+| `nowrun app delete` | Delete an app |
+| `nowrun use <app_id>` | Link this folder to an app |
+| `nowrun inspect app.apk` | Read a build's package name and version |
+| `nowrun validate` | List missing fields |
+| `nowrun deploy` | Deploy a build |
+| `nowrun status` | Show deploy status |
+| `nowrun cancel` | Cancel a deploy in progress |
 
-Your agent uses both of these at runtime to discover the full command surface without needing a hardcoded list.
-
-## Command reference
-
-| Command | Description |
-|---|---|
-| `nowrun login` | Authenticate via the browser and install the skill + MCP server |
-| `nowrun app create` | Create an app (`--type android` or `--type h5`) |
-| `nowrun deploy` | Deploy an Android APK or HTML5 bundle to a live URL |
-| `nowrun help` | List all available commands |
-| `nowrun <command> -h` | Show help for a specific command |
-
-## The skill and MCP server
-
-When `nowrun login` is run, it installs two key components:
-
-- **The nowrun skill** — teaches your AI agent about all available CLI commands and how to use them.
-- **The MCP server** — gives your agent a structured, machine-readable interface to the CLI so it can invoke commands reliably and handle outputs correctly.
-
-Together, these mean your agent never needs a hardcoded command list. It discovers everything at runtime, adapting automatically as the CLI evolves.
-
-<Info>
-  Because the CLI is agent-driven, the full command surface is intentionally discovered at runtime. Your agent uses `nowrun help` and the MCP server to learn what's available — this means the agent always uses the latest commands.
-</Info>
-
-## Next steps
-
-- [nowrun login](/cli/login): authenticate the CLI through your browser and install the skill + MCP server.
-- [nowrun deploy](/cli/deploy): deploy an Android APK or HTML5 bundle to a live, browser-accessible URL.
-
+More: [nowrun login](/cli/login), [nowrun deploy](/cli/deploy).

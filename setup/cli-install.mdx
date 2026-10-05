@@ -1,44 +1,25 @@
 ---
-title: "Set Up the nowrun CLI: pip Install and Verification"
-sidebarTitle: "CLI Install"
-description: "Install the nowrun command-line tool via pip. Requires Python 3.8 or later. Your AI agent typically runs this install step automatically."
+title: "Install the nowrun CLI"
+sidebarTitle: "Install the CLI"
+description: "Install the nowrun CLI with pip. Requires Python 3.8 or later. Your coding agent usually does this for you."
 ---
 
-Your AI agent usually installs the nowrun CLI for you as part of its setup flow — you don't need to do anything. If you want to install it manually or verify your environment ahead of time, follow the steps below. Python 3.8 or later is required.
-
-## Requirements
-
-<Info>
-  Before installing, make sure you have the following:
-
-  - **Python 3.8+** — check your version with `python --version` or `python3 --version`
-  - **pip** — check with `pip --version`
-</Info>
-
-## Install
-
-Run the following command to install the nowrun CLI:
+Your coding agent usually installs the CLI for you. To do it yourself, you need Python 3.8 or later.
 
 ```bash
 pip install nowrun
 ```
 
-## Verify the install
-
-Confirm the CLI is installed and explore available commands:
+Check it worked:
 
 ```bash
 nowrun help
 ```
 
-## The skill and MCP server
+To update the CLI, its agent skill and the docs MCP server later:
 
-Running `nowrun login` after install does more than authenticate — it also installs the nowrun skill and MCP server. These teach your agent the full set of available commands. At any point, your agent can run `nowrun help` or `nowrun <command> -h` to self-discover the current command surface without needing static documentation.
+```bash
+nowrun update
+```
 
-<Tip>
-  If you're using an AI agent, you typically just tell it to deploy your app — it will install the CLI automatically. You only need to install manually if you want to use the CLI directly or are setting up a new environment.
-</Tip>
-
----
-
-Next: [Authenticate the CLI](/setup/authentication)
+Next: [Sign in](/setup/authentication)

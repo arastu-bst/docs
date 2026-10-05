@@ -1,52 +1,35 @@
 ---
-title: "nowrun deploy: Publish Your Build to a Live URL"
+title: "nowrun deploy"
 sidebarTitle: "nowrun deploy"
-description: "nowrun deploy uploads your Android APK or HTML5 bundle and streams it at a browser-accessible URL that anyone can open without installing anything on their device."
+description: "Upload an Android APK to the app linked to this folder."
 ---
 
-`nowrun deploy` is the command that publishes your APK or web bundle to nowrun and returns a live URL. It takes an Android `.apk` or an HTML5 `.zip` web bundle. Your AI agent runs this after building, no Android device, emulator, or app store required on the recipient's end.
-
-## Usage
-
 ```bash
-nowrun deploy
+nowrun deploy -f app.apk --wait
 ```
 
-The agent discovers exact flags and options from `nowrun deploy -h` and the nowrun skill. The base command is `nowrun deploy`.
+Reads the version from the APK. Refuses a build whose package name doesn't match the app.
 
-## Prerequisites
+## Flags
 
-<Note>
-  Before running `nowrun deploy`, make sure you have:
-  - The nowrun CLI installed (`pip install nowrun`)
-  - Completed `nowrun login` successfully so your credentials are saved
-  - A build ready to upload: an Android `.apk`, or a `.zip` web bundle for HTML5
-</Note>
+<ParamField path="-f" type="string" required>
+  Path to the `.apk`.
+</ParamField>
 
-## What it does
+<ParamField path="-a" type="string">
+  App to deploy to. Defaults to the app linked to this folder.
+</ParamField>
 
-When your agent runs `nowrun deploy`, it:
+<ParamField path="--wait" type="boolean">
+  Block until the build finishes. Without it, the command returns a `submission_id` to check with `nowrun status -s`.
+</ParamField>
 
-1. Locates the APK or web bundle (the agent specifies the path with `-f`).
-2. Uploads it to nowrun.
-3. nowrun streams the app at a unique, browser-accessible URL.
-4. Returns the live URL, share it with anyone, no installation needed.
+<ParamField path="--timeout" type="number">
+  Seconds to wait with `--wait`. Default 900.
+</ParamField>
 
-## Exploring options
+## Result
 
-Because the CLI is agent-driven and evolves over time, use the built-in help to discover all current flags and options:
+`job_status` is `success` or `failed`. See [If the deploy fails](/deploying/your-first-deploy#if-the-deploy-fails).
 
-```bash
-nowrun deploy -h
-```
-
-Your agent runs this automatically via the MCP server and skill to stay up to date with the latest available options.
-
-<Tip>
-  Each deploy creates a new version. Your previous live URL stays active until you explicitly remove it or the app is deleted.
-</Tip>
-
-## Managing deployed apps
-
-After deploying, you can manage your live apps — including viewing, updating, and removing them. See [Managing Apps](/deploying/managing-apps) for details.
-
+For every flag, run `nowrun deploy -h`.

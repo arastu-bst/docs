@@ -15,32 +15,40 @@
   "navigation": {
     "groups": [
       {
-        "group": "Get Started",
+        "group": "Get started",
         "pages": [
-          "introduction",
-          "quickstart",
+          "index",
+          "install-the-plugin",
+          "try-it"
+        ]
+      },
+      {
+        "group": "For developers",
+        "pages": [
           "how-it-works",
-          "try-the-demo"
+          {
+            "group": "1. Upload your app",
+            "pages": [
+              "quickstart",
+              "setup/account",
+              "setup/cli-install",
+              "setup/authentication",
+              "deploying/describe-your-app",
+              "deploying/your-first-deploy",
+              "deploying/supported-engines",
+              "deploying/managing-apps"
+            ]
+          },
+          {
+            "group": "2. Add app functions",
+            "pages": [
+              "sdk/app-functions"
+            ]
+          }
         ]
       },
       {
-        "group": "Setup",
-        "pages": [
-          "setup/account",
-          "setup/cli-install",
-          "setup/authentication"
-        ]
-      },
-      {
-        "group": "Deploying",
-        "pages": [
-          "deploying/your-first-deploy",
-          "deploying/supported-engines",
-          "deploying/managing-apps"
-        ]
-      },
-      {
-        "group": "CLI Reference",
+        "group": "CLI reference",
         "pages": [
           "cli/overview",
           "cli/login",
@@ -66,8 +74,8 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Get Started",
-      "href": "https://nowrun.io"
+      "label": "Install the plugin",
+      "href": "/install-the-plugin"
     }
   },
   "footer": {
@@ -77,6 +85,18 @@
     {
       "source": "/cli/init",
       "destination": "/cli/login"
+    },
+    {
+      "source": "/introduction",
+      "destination": "/"
+    },
+    {
+      "source": "/try-the-demo",
+      "destination": "/try-it"
+    },
+    {
+      "source": "/get-the-plugin",
+      "destination": "/install-the-plugin"
     }
   ]
 }

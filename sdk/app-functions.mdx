@@ -1,0 +1,30 @@
+---
+title: "App functions"
+sidebarTitle: "App functions"
+description: "App functions let the assistant act inside your app. Add them with the nowrun SDK for Android (Java or Kotlin) and React Native (Expo)."
+---
+
+App functions are actions your app exposes, like *add an item to the shopping list*. When someone asks for one in the chat, the assistant calls the function and your app runs it.
+
+Without app functions, the assistant can only see the screen and tell people where to tap.
+
+## How it works
+
+1. Your app adds the nowrun SDK and registers its functions, each with a plain-language description and named arguments.
+2. When the app opens, it reports its functions to nowrun.
+3. The assistant picks a function from its description and calls it with arguments.
+4. Your app runs it and returns a short result.
+
+Supported: **Android (Java or Kotlin)** and **React Native (Expo)**.
+
+## Plan your functions
+
+- Cover the most common requests first. A few functions beat dozens.
+- One job per function: *add an item* rather than *manage the list*.
+- Describe each function and argument the way you'd explain it to a person. The assistant chooses from these descriptions.
+- Return a short result: a sentence or a small piece of data.
+- Update the screen when a function changes something, so the person sees it happen.
+
+## Example
+
+Drape is a sample app built with the SDK. Open it in the chat and ask it to change the outfit: [Try it](/try-it).
